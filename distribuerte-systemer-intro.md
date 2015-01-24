@@ -132,7 +132,9 @@ som beskytter sine interesser og har sine regler som en sender (et system) må
 forholde seg til
 
 Og det finnes en hel del andre feil og fallgruven man kan introdusere om man
-ikke er forsiktig eller bruker kjente standarder.
+ikke er forsiktig eller bruker kjente standarder. Hvorfor tar jeg opp dette?
+Fordi det er viktig å vite om disse antagelsene og være klar over dem når
+man skal bygge et eller vurdere et distribuert system. 
 
 
 ## Resursser
