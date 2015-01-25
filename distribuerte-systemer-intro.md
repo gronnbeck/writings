@@ -134,7 +134,58 @@ forholde seg til
 Og det finnes en hel del andre feil og fallgruven man kan introdusere om man
 ikke er forsiktig eller bruker kjente standarder. Hvorfor tar jeg opp dette?
 Fordi det er viktig å vite om disse antagelsene og være klar over dem når
-man skal bygge et eller vurdere et distribuert system. 
+man skal bygge et eller vurdere et distribuert system.
+
+
+## CAP Teoremet
+...
+Grovt har man to hovedkategorier av konsistens, de er "strongly consistent"
+og "eventually consistent". Den første nevnte kan garantere at dataene du leser
+fra én node vil være den samme på én annen node i et kluster. Mens den andre garanterer kun at
+etter et gitt intervall vil dataene du leser fra én node være det samme for en annen
+node i et kluster.
+
+## Konsensus
+Konsensus i distribuerte systemer har vært forsket på lenge. Enkelt sett
+er konsensus i distribuerte systemer en algoritme for få flere noder i et kluster
+til å bli enig om noe. Noe kan være å bli enig om hvilken node som er master ved
+Leader election eller hvilke data som er korrekte. Konsensus er sterkt
+knyttet til konseptet om konsistens som fra CAP teoremet. Og man trenger en
+konsensusalgoritme riktige tradeoffs for å få den konsistensmekansimen man ønsker.
+
+
+Den mest kjente protkollen for konsensus er Paxos. Paxos, av Leslie Lamport,
+er en konsensusprotokoll som er "strongly consistent". Kort fortalt sørger Paxos for at noder i et nettverk
+får konsensus, altså at de blir enige, i ett nettverk som kan være ustabilt og
+ha upålitelige noder. Paxos er notorisk kjent for å være umukig å forstå, så jeg
+vil ikke diskutere protokollen mer enn som så. Men er absolutt verdt å prøve å forstå
+for en som er interessert i distribuerte systemer. Jeg anbefaler å først lese
+Wikipedia artikkelen om Paxos og deretter Lamports paper "Paxos Made Simple" fra 2001.
+Og med det ønsker jeg deg lykke til!
+
+Men siden Paxos har det dukket opp flere konsensusprotokoller. Der de mest kjente
+er Zab som brukes av Zookeeper og Raft implementert i Consul, etcd og en hel del
+andre distribuerte systemer. For Zab anbefaler jeg å lese paperet om Zookeeper
+og Zab for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
+sidene om "Raft Consensus" veldig bra lesing.
+
+
+### Bysantisk feiltoleranse
+Byzantine feiltoleranse er en feiltoleranse basert på "Byzantine General Problem".
+Problemet er beskrevet omtrent slik. Generaler av Byzantine skal bli enige om
+de skal angripe en fienden eller ikke. Problemet er at Generalene kan bare
+kommunisere med hverandre med meldinger, og at det blant generalene kan
+finnes forrædere. Forræderene kan sende falske meldinger som kan få en av generalene
+til å gå til angrep alene uten støtte fra de andre generalene. Et slik angrep
+vil uten tvil føre til et knusende tap for den angripende generalen. Et angrep
+vil være vellykket hvis alle loyale generaler angriper samtidig. Så hvordan skal
+man ved hjelp av meldinger kunne vite at alle loyale generaler har kommet frem
+til samme svar og vil utføre samme handling?
+
+Problemet har mange løsninger, noen basert på kryptosignaturer, BitCoins hashchain
+med proof of work er en versjon av problemet. Men man kan også løse problemet med
+helt enkelt ved å foreta en avstemning. En avstemning vil kun være gylidg hvis
+maks 1/3 av generalene er forræderriske. 
 
 
 ## Resursser
@@ -144,3 +195,7 @@ man skal bygge et eller vurdere et distribuert system.
 * http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
 * http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
 * http://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
+* http://web.stanford.edu/class/cs347/reading/zab.pdf
+* https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ
+* https://raftconsensus.github.io
+* [Byzantine General Problem] http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf
