@@ -6,8 +6,10 @@
 * Hvorfor?
 * Teori
   - Konsensus
-    * Byzantine General Problem
+    * Gossip protocol
   - Fallacies of distributed systems
+  - Byzantine General Problem
+
 * Microsystems
 
 ## Historie
@@ -138,12 +140,49 @@ man skal bygge et eller vurdere et distribuert system.
 
 
 ## CAP Teoremet
-...
-Grovt har man to hovedkategorier av konsistens, de er "strongly consistent"
+CAP Teormet, også kalt Brewers teorem, som jeg så vidt nevnte tidligere
+går som følgende. Et distribuert system system can ikke garantere alle følgende
+egenskapene:
+
+* Konsitens (Consitency)
+* Tilgjengelighet (Availability)
+* Partisjonstoleranse (Partition tolerance)
+
+Før jeg begynner vil jeg poengtere at CAP har mange forskjellige
+tolkninger, og at dette er min tolkning og forståelse av CAP teoremet.
+
+En ekstrem tolkning av dette er at man får systemer som tilfredstillier to av tre av
+disse egeneskapene. Man får systemer som f.eks. er CP, AP og CA, men hvilke
+tradeoffs gjør man typisk for få de egenskapene man ønsker i et distribuert system.
+Jeg kommer til å bruke denne ekstreme tolkning for å illsutrere de forskjellige
+tilpassningene man kan gjøre på konsistens, tilgjengelighet og partisjonstoleranse.
+Men vær oppmerksom på at man ikke nødvendigvis trenger å bytte ut én egenskap for
+å oppnå en annen.
+
+La oss begynne med konsistens. Grovt sett har man to hovedkategorier av konsistens, de er "strongly consistent"
 og "eventually consistent". Den første nevnte kan garantere at dataene du leser
 fra én node vil være den samme på én annen node i et kluster. Mens den andre garanterer kun at
 etter et gitt intervall vil dataene du leser fra én node være det samme for en annen
 node i et kluster.
+
+Tilgjengelighet handler om å garantere at en forespørsel skal få et svar om operasjonen
+var vellykket eller har feilet. Ikke-tekniks betyr det at løsningen svarer.
+Tilgjengelighet kan måles i form av oppetid. Et system som bytter bort oppetid
+for for eksempel konsistens (CP) kan ikke garantere at man får respons før systemet er
+konsistent. Og da man da risikere å ikke ha mulighet til å responsere til en klients
+forespørsel.
+
+Partisjonstoleranse er en type feiltoleranse som
+sikter til hvor godt et distribuert system tolerer feil i deler av systemet (f.eks
+  at en node faller ned) eller vilkårelig tap av meldinger. Det er ikke ofte
+man lager systemer der man ofrer partisjonstoleranse (CA), men noen databasesystemer
+ofrer som Spinnaker ofrer nettop partisjonstoleranse mellom datasenter for å oppnå
+de egenskapene de ønsker.
+
+Til slutt vil jeg ta opp at CAP teoremet har mange kritikere blant annet at
+CAP formelt sett ikke er ett teorem, men heller en pragmatisk regel. Og at siden
+CAP teoremet har så mange tolkninger må man være påpasselig når man diskuterer
+egenskapene til et distribuert system ved hjelp av CAP teoremet. 
 
 ## Konsensus
 Konsensus i distribuerte systemer har vært forsket på lenge. Enkelt sett
@@ -152,7 +191,6 @@ til å bli enig om noe. Noe kan være å bli enig om hvilken node som er master 
 Leader election eller hvilke data som er korrekte. Konsensus er sterkt
 knyttet til konseptet om konsistens som fra CAP teoremet. Og man trenger en
 konsensusalgoritme riktige tradeoffs for å få den konsistensmekansimen man ønsker.
-
 
 Den mest kjente protkollen for konsensus er Paxos. Paxos, av Leslie Lamport,
 er en konsensusprotokoll som er "strongly consistent". Kort fortalt sørger Paxos for at noder i et nettverk
@@ -169,6 +207,7 @@ andre distribuerte systemer. For Zab anbefaler jeg å lese paperet om Zookeeper
 og Zab for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
 sidene om "Raft Consensus" veldig bra lesing.
 
+## Feiltoleranse
 
 ### Bysantisk feiltoleranse
 Byzantine feiltoleranse er en feiltoleranse basert på "Byzantine General Problem".
@@ -185,7 +224,7 @@ til samme svar og vil utføre samme handling?
 Problemet har mange løsninger, noen basert på kryptosignaturer, BitCoins hashchain
 med proof of work er en versjon av problemet. Men man kan også løse problemet med
 helt enkelt ved å foreta en avstemning. En avstemning vil kun være gylidg hvis
-maks 1/3 av generalene er forræderriske. 
+maks 1/3 av generalene er forræderriske.
 
 
 ## Resursser
@@ -199,3 +238,4 @@ maks 1/3 av generalene er forræderriske.
 * https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ
 * https://raftconsensus.github.io
 * [Byzantine General Problem] http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf
+* [Spinnaker] http://www.vldb.org/pvldb/vol4/p243-rao.pdf
