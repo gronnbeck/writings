@@ -1,4 +1,5 @@
-# En kort historie om distribuerte systemer (DRAFT 1)
+# En kort historie om distribuerte systemer
+# (DRAFT 1)
 
 ## Tema
 * Historie
@@ -6,7 +7,7 @@
 * Hvorfor?
 * Teori
   - Konsensus
-    * Gossip protocol
+    * Gossip Architecture
   - Fallacies of distributed systems
   - Byzantine General Problem
 
@@ -182,7 +183,7 @@ de egenskapene de ønsker.
 Til slutt vil jeg ta opp at CAP teoremet har mange kritikere blant annet at
 CAP formelt sett ikke er ett teorem, men heller en pragmatisk regel. Og at siden
 CAP teoremet har så mange tolkninger må man være påpasselig når man diskuterer
-egenskapene til et distribuert system ved hjelp av CAP teoremet. 
+egenskapene til et distribuert system ved hjelp av CAP teoremet.
 
 ## Konsensus
 Konsensus i distribuerte systemer har vært forsket på lenge. Enkelt sett
@@ -206,6 +207,8 @@ er Zab som brukes av Zookeeper og Raft implementert i Consul, etcd og en hel del
 andre distribuerte systemer. For Zab anbefaler jeg å lese paperet om Zookeeper
 og Zab for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
 sidene om "Raft Consensus" veldig bra lesing.
+
+### Gossip Architecture
 
 ## Feiltoleranse
 
