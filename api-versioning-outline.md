@@ -125,5 +125,6 @@ Well documented and announced multi-month deprecation schedules can be an accept
 4. http://pivotallabs.com/api-versioning/
 5. http://getpocket.com/a/read/248165345
 6. http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+7. http://timelessrepo.com/haters-gonna-hateoas
 
 ## Note
