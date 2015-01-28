@@ -208,7 +208,59 @@ andre distribuerte systemer. For Zab anbefaler jeg å lese paperet om Zookeeper
 og Zab for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
 sidene om "Raft Consensus" veldig bra lesing.
 
-### Gossip Architecture
+### Replikering og konflikter
+Note: Replikering er kanskje ikke det riktig fagordet. Må finne et bedre ord for det.
+
+Konsensus og replikering av state er også sterkt knyttet. Uten et en ordentlig
+konsensusalgoritme kan ikke noder i et distribuert system bli enige om hvilke
+data som er korrekte.
+
+Ved hjelp av replikering kan man enklere beskrive hva konsensus faktisk betyr.
+For eksempel hvis tre noder i et system og man har flere klienter som skriver mot
+det distribuerte systemet samtidig. I et system som kun garanterer deg eventuell
+konsistens vil man potensielt kunne få tre forskjellige versjoner av den samme
+dataen. Vi har dermed fått en konflikt i dataene og den må håndteres.
+Hvordan skal nodene finne ut hvilken data som er den riktige?
+
+Det er mange algoritmer for å håndtere replikering av data mellom nodene i et
+distribuert system. De mest kjente kategoriene er Gossip Protocol (AP), Paxos (CP)
+og Two-Phase Commits (CA). I Amazons DynamoDB bruker de en versjon av Gossip
+Protokollen, men i DynamoDB er det klientene som har ansvar for konflikthåndtering.
+Da jeg synes det er mer interessant å se på hvordan DynamoDB gjør konflikthåndering.
+Vil jeg ikke gå i dyben på hvordan Gossip Protokollen fungerer. Jeg anbefaler
+å lese mer om det på Wikipedia og i Amazons paper om DynamoDB.
+
+Som sagt er det klientene som har ansvar for konfliktshåndtering i DynamoDB.
+Helt overordnet så vil DynamoDB sende alle versjonen av et dokument
+når en klient ber om et dokument som er i konflikt. Deretter er det opp til
+klienten å velge eller flette sammen dokumentet for å håndtere konflikten.
+
+Amazons handlekurv er et eksempel der DynamoDB blir brukt. Og fungerer som en
+god illustrasjon for hvordan man kan gjøre konflikthåndtering. Deres strategi
+for å håndtere en regersjon mellom versjoner av dokumentet er å flette sammen
+handlekurver. Det vil si at de tar en union av handlekurvene.
+
+```
+Handlekurv 1.0:
+* Gjenstand 1
+* Gjenstand 2
+* Gjenstand 4
+
+Handlekurv 1.1:
+* Gjenstand 1
+* Gjenstand 5
+
+Ny Handlekurv:
+* Gjenstand 1
+* Gjenstand 2
+* Gjenstand 4
+* Gjenstand 5
+
+```
+
+I et system som tar i bruk en konsensusalgoritme som garanterer konsistens, for
+eksempel Paxos. Trenger man ikke å håndtere regresjon av data. Men man trenger
+da strategier for å mitigere tap av tilgjengelighet. 
 
 ## Feiltoleranse
 
