@@ -260,9 +260,59 @@ Ny Handlekurv:
 
 I et system som tar i bruk en konsensusalgoritme som garanterer konsistens, for
 eksempel Paxos. Trenger man ikke å håndtere regresjon av data. Men man trenger
-da strategier for å mitigere tap av tilgjengelighet. 
+da strategier for å mitigere tap av tilgjengelighet.
 
 ## Feiltoleranse
+Under konsensus var vi innom et spesialtilfelle av feilhåndtering. Nemlig hvordan
+man håndterer data synkroniseringsfeil. Men i et distribuert system er dette kun
+en av mange forskjellige feil som kan oppstå. Feil som at noder faller ned,
+nettverket mellom noder går ned, forskjellige versjoner av systemet kjører samtidig
+eller at noen av nodene i systemet er ondsinnede. Er noen eksempler på hva som
+kan gå galt i et distribuert system. Feiltoleransen til et distribuert system
+defineres av hvordan systemet er designet for å kunne håndtere slike feil.
+I de neste avsnittene vil jeg beskrive problemene jeg listet opp overfor.
+Og komme med et eksempel på hvordan man kan håndtere hvert problem.
+
+At en node forsvinner kan være lett å håndtere. For AP systemer betyr det at man
+påforhånd har tatt høyde for at data skal være replikert mellom flere noder.
+Det finnes flere teknikker for å garantere at datene er tilgjengelige. Helt
+overordnet betyr det at all data som var lagret på den noden som kræsjet må
+være replikert hos én eller flere andre noder. Det finnes flere teknikker
+for å gjøre dette og et eksempel på hvordan det kan gjøres er godt beskrevet
+i Dynamos whitepaper.
+
+Noder kan forsvinne fra nettverket og deler av nettverket kan falle ned. Men i et
+distribuert system er det ofte vanskelig å skille mellom disse. Og man kan i
+svært få tilfeller skille mellom dem. Det er derfor viktig å lage løsninger
+som er tolerante for begge typer feil. Det som skiller en død node fra
+dødt nettverk er at noder på hver sin side av en nettverkspartisjon kan
+fortsette å operere uavhengig av hverandre og man kan for eksempel i et master/slave
+database-system kan man ende opp med et "split-brain" problem. Et problem som
+ofte er vanskelig å løse hvis man ikke ønsker inkorrekte data.
+
+Bysantisk feiltoleranse er en teknikk designet for å håndtere ondsinnede noder.
+Men kan også brukes til sikre et system for å tåle at en node ikke oppfører seg
+som forventet. Personlig synes jeg bysantisk feiltoleranse er interessant fordi
+problemet har mange forskjellige løsninger. Jeg har lagt ved et lite kapittel i
+slutten av posten som forklarer problemet i litt mer detalj.
+
+
+## Resursser
+* http://en.wikipedia.org/wiki/Distributed_computing#History
+* http://en.wikipedia.org/wiki/ARPANET
+* http://web.stanford.edu/class/cs240/readings/lamport.pdf
+* http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
+* http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
+* http://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
+* http://web.stanford.edu/class/cs347/reading/zab.pdf
+* https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ
+* https://raftconsensus.github.io
+* [Byzantine General Problem] http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf
+* [Spinnaker] http://www.vldb.org/pvldb/vol4/p243-rao.pdf
+* [Split-brain Problem] http://en.wikipedia.org/wiki/Split-brain_%28computing%29
+
+
+## Apendix
 
 ### Bysantisk feiltoleranse
 Byzantine feiltoleranse er en feiltoleranse basert på "Byzantine General Problem".
@@ -280,17 +330,3 @@ Problemet har mange løsninger, noen basert på kryptosignaturer, BitCoins hashc
 med proof of work er en versjon av problemet. Men man kan også løse problemet med
 helt enkelt ved å foreta en avstemning. En avstemning vil kun være gylidg hvis
 maks 1/3 av generalene er forræderriske.
-
-
-## Resursser
-* http://en.wikipedia.org/wiki/Distributed_computing#History
-* http://en.wikipedia.org/wiki/ARPANET
-* http://web.stanford.edu/class/cs240/readings/lamport.pdf
-* http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
-* http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
-* http://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
-* http://web.stanford.edu/class/cs347/reading/zab.pdf
-* https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ
-* https://raftconsensus.github.io
-* [Byzantine General Problem] http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf
-* [Spinnaker] http://www.vldb.org/pvldb/vol4/p243-rao.pdf
