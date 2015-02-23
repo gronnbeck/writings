@@ -318,8 +318,19 @@ ofte er vanskelig å løse hvis man ikke kan leve med inkorrekte data.
 Bysantisk feiltoleranse er en teknikk designet for å håndtere ondsinnede noder.
 Men kan også brukes til sikre et system for å tåle at en node ikke oppfører seg
 som forventet. Personlig synes jeg bysantisk feiltoleranse er interessant fordi
-problemet har mange forskjellige løsninger. Jeg har lagt ved et lite kapittel i
-slutten av posten som forklarer problemet i litt mer detalj.
+problemet har mange forskjellige løsninger. En løsning basert på kryptografi er
+proof-of-work. "Proof-of-work" kjeder, som blant annet er brukt i BitCoin, kan brukes
+til å unngå Bysantiske feil. 
+
+## Veien videre
+I denne bloggposten har jeg prøvd på en enkel måte å forklare hvor behovet for
+distribuerte systemer kommer fra. Og jeg har introdusert noe grunnteori for
+distribuerte systemer. I tillegg håper jeg har belyst hvilke problemer man kan
+møte på når man lager eller tar i bruk et distribuert system.
+
+Denne bloggposten er ment som den første av en serie med bloggposter om
+distribuerte systemer. I senere poster ønsker jeg å gå dypere ned i teori, konsepter
+og rammeverk.
 
 
 ## Resursser
