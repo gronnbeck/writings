@@ -318,16 +318,42 @@ distribuerte systemer. I senere poster ønsker jeg å gå dypere ned i teori, ko
 og rammeverk.
 
 
-## Resursser
-* http://en.wikipedia.org/wiki/Distributed_computing#History
-* http://en.wikipedia.org/wiki/ARPANET
-* http://web.stanford.edu/class/cs240/readings/lamport.pdf
-* http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf
-* http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
-* http://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
-* http://web.stanford.edu/class/cs347/reading/zab.pdf
-* https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ
-* https://raftconsensus.github.io
-* [Byzantine General Problem] http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf
-* [Spinnaker] http://www.vldb.org/pvldb/vol4/p243-rao.pdf
-* [Split-brain Problem] http://en.wikipedia.org/wiki/Split-brain_%28computing%29
+## Anbefalt lesing
+### Time, Clocks, and the Ordering of Events in a Distributed System
+Lamport gir en god forklaring på hvorfor man ikke kan bruke timestamps til
+å kunne bestemme den globale rekkefølgen på eventer i et distribuert system.
+
+[PDF](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
+
+
+### Dynamo: Amazon's Highly Available Key-value Store
+Amazon har gjort en fantastisk jobb med å forklare hvordan man kan lage
+skalerbare databasetjenester. Paperet gir en veldig god forklaring av de
+teorien og de underliggende mekanismene implementert i Dynamo. Dette paperet
+vil jeg anbefale alle som er interessert i databaser eller distribuerte systemer.
+
+[PDF](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+
+### Paxos made Simple
+Lamport prøver å forklare Paxos på en enklere måte enn det han gjorde i sitt
+første paper om algoritmen. Paxos er kjent for å være veldig kompleks og vanskelig
+å forstå. Derfor er dette paperet er for de mest interesserte og tålmodige.
+
+[PDF](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
+
+### Zab: High-performance broadcast for primary-backup systems
+Det er lenge siden jeg har lest dette paperet. Men gir en god beskrivelse av en
+alternativ konsensusalgortime. For de som synes Paxos paperet var interessant
+anbefaler jeg å lese dette paperet.
+
+[PDF](http://web.stanford.edu/class/cs347/reading/zab.pdf)
+
+### Raft
+Uavhengig om du var modig nok til å sette deg inn i Paxos eller ikke, kan det
+være interessant å sette seg inn i hvordan Raft løser konsensusproblemet.
+[Web](https://raftconsensus.github.io)
+[PDF](https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ)
+
+### Andre
+* [Byzantine General Problem av Lamport](http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf)
+* [Spinnaker](http://www.vldb.org/pvldb/vol4/p243-rao.pdf)
