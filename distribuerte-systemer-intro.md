@@ -1,19 +1,5 @@
 # En kort historie om distribuerte systemer
-# (DRAFT 2)
 
-## Tema
-* Historie
-  - I dag
-* Hvorfor?
-* Teori
-  - Konsensus
-    * Gossip Architecture
-  - Fallacies of distributed systems
-  - Byzantine General Problem
-
-* Microsystems
-
-## Introduksjon
 Det er ikke lenge siden det holdt med en maskin for å kjøre all slags applikasjoner (?).
 De fleste problemer var løsningen å kaste raskere maskinvare på maskinen du brukte.
 Hvis rask nok maskinvare ikke var tilgjengelig eller du ikke hadde råd.
@@ -320,7 +306,7 @@ Men kan også brukes til sikre et system for å tåle at en node ikke oppfører 
 som forventet. Personlig synes jeg bysantisk feiltoleranse er interessant fordi
 problemet har mange forskjellige løsninger. En løsning basert på kryptografi er
 proof-of-work. "Proof-of-work" kjeder, som blant annet er brukt i BitCoin, kan brukes
-til å unngå Bysantiske feil. 
+til å unngå Bysantiske feil.
 
 ## Veien videre
 I denne bloggposten har jeg prøvd på en enkel måte å forklare hvor behovet for
@@ -346,23 +332,3 @@ og rammeverk.
 * [Byzantine General Problem] http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf
 * [Spinnaker] http://www.vldb.org/pvldb/vol4/p243-rao.pdf
 * [Split-brain Problem] http://en.wikipedia.org/wiki/Split-brain_%28computing%29
-
-
-## Apendix
-
-### Bysantisk feiltoleranse
-Byzantine feiltoleranse er en feiltoleranse basert på "Byzantine General Problem".
-Problemet er beskrevet omtrent slik. Generaler av Byzantine skal bli enige om
-de skal angripe en fienden eller ikke. Problemet er at Generalene kan bare
-kommunisere med hverandre med meldinger, og at det blant generalene kan
-finnes forrædere. Forræderene kan sende falske meldinger som kan få en av generalene
-til å gå til angrep alene uten støtte fra de andre generalene. Et slik angrep
-vil uten tvil føre til et knusende tap for den angripende generalen. Et angrep
-vil være vellykket hvis alle loyale generaler angriper samtidig. Så hvordan skal
-man ved hjelp av meldinger kunne vite at alle loyale generaler har kommet frem
-til samme svar og vil utføre samme handling?
-
-Problemet har mange løsninger, noen basert på kryptosignaturer, BitCoins hashchain
-med proof of work er en versjon av problemet. Men man kan også løse problemet med
-helt enkelt ved å foreta en avstemning. En avstemning vil kun være gylidg hvis
-maks 1/3 av generalene er forræderriske.
