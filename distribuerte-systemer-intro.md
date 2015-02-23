@@ -71,19 +71,18 @@ Ideer vi fortsatt ser i moderne databaser i dag.
 
 Siden har distribuert teori og rammeverk florert i industrien. Mer forståelige
 konsensusalgoritmer som zab og raft har blitt forsket frem og introdusert.
-Mengder nosql databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
+Og vanvittige mange nosql databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
 og CouchDB er noen få eksempler på hva som finnes i dag. Og vi har nok bare sett
 toppen av isfjellet for distribuerte (nosql) databaser.
 
-MapReduce introduserte noe som kalles batch-orientert dataprosessering.
+MapReduce-modellen var basert på det som kalles en batch-orientert dataprosessering.
 Siden MapReduce først ble introdusert har dataprosessering beveget seg vekk
 fra batch-orientering til strøm-orientert dataprosessering.
 Det var Nathan Marz sammen med BackType, som senere ble kjøpt opp av twitter,
 som introduserte Storm et distribuert strøm-orienterte dataprosessering rammeverk.
 Strøm-orientert data-prosessering forenklet modellen for å gjøre sanntidsberegninger på store
-mengder data. Noe som ikke var like lett i MapReduce-modellen. MapReduce-modellen
-er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes
-den dag i dag.
+mengder data. Noe som ikke er lett å få til i MapReduce sin beregningsmodell. MapReduce-modellen
+er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag.
 
 
 ## Hvorfor?
