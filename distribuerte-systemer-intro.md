@@ -1,7 +1,7 @@
 # En kort historie om distribuerte systemer
 
-Det er ikke lenge siden det holdt med en maskin for å kjøre all slags applikasjoner (?).
-De fleste problemer var løsningen å kaste raskere maskinvare på maskinen du brukte.
+Det er ikke lenge siden det holdt med en maskin for å kjøre all slags software.
+De fleste problemer kunne løses ved å kaste raskere maskinvare på maskinen du brukte.
 Hvis rask nok maskinvare ikke var tilgjengelig eller du ikke hadde råd.
 Kunne du la Moore's Lov gjøre jobben sin og vente på at maskinvaren enten ble rask eller billig
 nok til å løse akkurat dine problemer.
