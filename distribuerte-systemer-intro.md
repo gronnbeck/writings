@@ -1,48 +1,49 @@
 # En kort historie om distribuerte systemer
 
-Det er ikke lenge siden det holdt med en maskin for å kjøre all slags software.
-De fleste problemer kunne løses ved å kaste raskere maskinvare på maskinen du brukte.
-Hvis rask nok maskinvare ikke var tilgjengelig eller du ikke hadde råd.
-Kunne du la Moore's Lov gjøre jobben sin og vente på at maskinvaren enten ble rask eller billig
+Det er ikke lenge siden det holdt med èn maskin for å kjøre all slags software:
+de fleste problemer kunne løses ved å kaste raskere maskinvare på maskinen du brukte.
+Hvis rask nok maskinvare ikke var tilgjengelig, eller du ikke hadde råd,
+kunne du la Moore's Lov gjøre jobben sin og vente på at maskinvaren enten ble rask eller billig
 nok til å løse akkurat dine problemer.
 
 > "Moore's law" is the observation that, over the history of computing hardware,
 > the number of transistors in a dense integrated circuit doubles
 > approximately every two years.
 
-Tidene har endret seg og selv om antall transsistorer på en prosessor dobler seg annen hvert år, dobler ikke hastigheten seg i samme hastighet. I dag observerer vi Moore's Lov i form av flere kjerner,
-altså mer kraft og ikke hastighet. Dette har ført til at  utviklere må finne andre løsninger
-for å utnytte oss av tankene rundt flere kjener.
+Tidene har endret seg. Selv om antall transistorer på en prosessor fortsatt dobles annenhvert år, dobler ikke hastigheten seg i samme hastighet. I dag observerer vi Moore's Lov i form av flere kjerner -
+altså i henhold til prosesseringskrafmt fremfor hastighet. Dette har ført til at utviklere må finne andre løsninger
+for å utnytte den nye kjernebaserte tankegangen.
 
-Historisk sett er ikke dette helt sant at man ikke hadde distribuerte systemer.
-Skal jeg være helt ærlig så har fagfeltet for distribuete systemer eksistert helt siden
-slutten av 1970-tallet. Man kan argumenteret at tankene og ideene bak distribuerte systemer
-allerede startet med introduksjonen av ARPANET, som vi i dag kjenner som internett,
-på 1960-tallet. Men å tenke på å lage distribuerte systemer med hjelp av dagligdagse
+// Hva er sammenhengen her?
 
-Men du lurer sikker på hvordan er flerkjernede prosesser relatert til distribuerte systemer.
-Teknikker man bruker for å optimalisere for hastighet ved hjelp av flerkjerende prosesser
-kan man bruke i distribuerte systemer. Men løse problemer av mye større skala.
-Der en flerkjernet løsning ikke vil skalere vil mest sannsynligvis et distribuert
-system gjøre det.
+Men hva har dette med distribuerte systemer å gjøre? Det viser seg at teknikker for å 
+optimalisere for hastighet ved hjelp av flerkjernede prosessorer også kan benyttes i forbindelse
+med distribuerte systemer. (saus?) (hvorfor vil skaleringen være bedre i distribuerte systemer?)
+
+Selv om det fremdeles er i en tidlig fase har fagfeltet for distribuerte systemer historisk sett 
+eksistert siden slutten av 1970-tallet. Man kan argumentere for at tankene og ideene bak distribuerte systemer
+startet allerede med introduksjonen av ARPANET, som vi i dag kjenner som internett,
+på 1960-tallet. Men å tenke på å lage distribuerte systemer med hjelp av dagligdagse // wut?
 
 ## Historie
 
 I starten var det mye fokus på rekkefølge av hendelser og konsensus mellom maskiner.
-Der vitenskaplige artikler som
-"Time, Clocks, and the Ordering of Events in a Distributed System" og "Paxos" av
-Lamport fortsatt er kjent og mye brukt den dag i dag. Det skal være sagt at
-Paxos fortsatt er mye i bruk og tilnærmelig umulig å forstå. Og siden har
-flere konsensuslagoritmer blitt introdusert, jeg kommer tilbake til dem senere.
+Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" 
+og "Paxos" av Lamport (saus) understøtter denne tankegangen, og de er fortsatt er kjent den dag
+i dag. Paxos er mye i bruk i reelle systemer, på tross av at den er tilnærmelig umulig å forstå. 
+Det har siden blitt introdusert flere konsensusalgoritmer - jeg kommer tilbake til de senere.
 
-Lenge var fagfeltet unsynelig for industrien. Og industrien brydde seg fint lite
-om hva som skjedde innen for fagfeltet. Men da Google gav ut sitt første åpne forskningsartikkel
-på MapReduce i 2004 begynte industrien virkelig å følge med på med distribuerte systemer.
-Og det forfærdelige, misforståtte og uklare buzzwordet BigData ble født.
+Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpne forskningsartikkel
+om MapReduce i 2004 (saus) fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
+på industriell skala. Det var her det veldig ofte misbrukte og misforståtte ordet "BigData" oppsto.
 
-MapReduce startet det jeg vil kalle for data-prosessering bølgen av distribuerte
-systemer. MapReduce er et distribuert rammerverk med en veldig simpel data-prosesserings model, som
-skulle gjøre data-prosessering enkelt, skalerbart og raskt på terrabytes av data.
+Det startet en bølge av dataprosessering (gjerne over internett), og satte distribuerte systemer på kartet,
+men hva er egentlig MapReduce? MapReduce er et distribuert rammerverk med en veldig simpel 
+dataprosesseringsmodell, som hadde ambisjoner om å gjøre dataprosessering enkelt, skalerbart og raskt 
+på terrabytes av data. Det fantes allerede løsninger som kunne operere på datamengder av denne størrelsen, men
+disse led ofte av komplekse datamodeller og måtte kjøres på dyr harware kalt "superdatamaskiner". Det som virkelig
+gjorde MapReduce unik var at den åpnet for prosessering av store mengder data på helt vanlige datamaskiner.
+
 På dette tidspunktet fantes det løsninger som raskt prosessere terrabytes med data.
 Men disse hadde ofte en komplex datamodel og var avhengig av å bli kjørt på superdatamaskin.
 Det som gjør MapReduce unik var at det kunne prosessere store mengder data på helt vanlige maskiner!
