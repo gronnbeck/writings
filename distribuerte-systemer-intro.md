@@ -14,11 +14,10 @@ Tidene har endret seg. Selv om antall transistorer på en prosessor fortsatt dob
 altså i henhold til prosesseringskraft fremfor hastighet. Dette har ført til at utviklere må finne andre løsninger
 for å utnytte den nye kjernebaserte tankegangen.
 
-// Hva er sammenhengen her?
-
-Men hva har dette med distribuerte systemer å gjøre? Det viser seg at teknikker for å
+Men hva har dette med distribuerte systemer å gjøre? Når en maskin ikke er nok til å løse
+problemet, kan man ta i bruk flere maskiner. Og heldigvis viser det seg at teknikker for å
 optimalisere for hastighet ved hjelp av flerkjernede prosessorer også kan benyttes i forbindelse
-med distribuerte systemer. (saus?) (hvorfor vil skaleringen være bedre i distribuerte systemer?)
+med distribuerte systemer, men med en hel del mer kompleksitet.
 
 Selv om det fremdeles er i en tidlig fase har fagfeltet for distribuerte systemer historisk sett
 eksistert siden slutten av 1970-tallet. Man kan argumentere for at tankene og ideene bak distribuerte systemer
@@ -28,13 +27,13 @@ på 1960-tallet.
 ## Historie
 
 I starten var det mye fokus på rekkefølge av hendelser og konsensus mellom maskiner.
-Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System"
-og "Paxos" av Lamport (saus) understøtter denne tankegangen, og de er fortsatt er kjent den dag
+Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" [1]
+og "Paxos" av Lamport [2] understøtter denne tankegangen, og de er fortsatt er kjent den dag
 i dag. Paxos er mye i bruk i reelle systemer, på tross av at den er tilnærmelig umulig å forstå.
 Det har siden blitt introdusert flere konsensusalgoritmer - jeg kommer tilbake til de senere.
 
 Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpne forskningsartikkel
-om MapReduce i 2004 (saus) fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
+om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
 på industriell skala. Det var her det veldig ofte misbrukte og misforståtte ordet "BigData" oppsto.
 
 Det startet en bølge av dataprosessering (gjerne over internett), og satte distribuerte systemer på kartet,
@@ -46,7 +45,7 @@ gjorde MapReduce unik var at den åpnet for prosessering av store mengder data p
 
 På dette tidspunktet fantes det løsninger som raskt prosessere terrabytes med data.
 Men disse hadde ofte en komplex datamodel og var avhengig av å bli kjørt på superdatamaskin.
-Det som gjør MapReduce unik var at det kunne prosessere store mengder data på helt vanlige maskiner!
+Det som gjorde MapReduce unik var at det kunne prosessere store mengder data på helt vanlige maskiner!
 
 At Google kunne prosessere terrabytes av data på helt vanlige maskiner er en effekt av at Google
 introduserte et konsept om feiltoleranse. Maskiner kunne kræsje, med noen unntak,
@@ -58,12 +57,11 @@ tilgjengelighet (Availability) og partisjons tolerance (Parition tolerance).
 CAP blir ofte brukt til å klassifisere hvilke krav et et distribuert systemet,
 ofte distribuerte databaser, tilfredstiller. Jeg kommer tilbake til CAP senere i denne posten.
 
-
-Med Dynamo i 2007 definerte Amazon industristandarden nosql databaser skulle fungere.
-Dynamo er en nosql database optimalisert for mange writes og ble designed for å løse
-Amazons problem med å lagre data, f.eks. handlekurver, under perioder med mye last.
+I 2007 definerte Amazon industristandarden nosql databaser skulle fungere.
+Dynamo [4] er en nosql database optimalisert for mange writes og ble designet og implementert for å løse
+Amazons problem med å lagre data under perioder med mye last.
 For eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
-mengde med trafikk. For å oppnå dette måtte Amazon designe og implementere en database
+mengde med trafikk. For å oppnå dette måtte Amazon implementere en database
 som kunne skalere for å løse deres konkrete problem.
 I artikkelen om Dynamo blir disse ideene og teknikkene presentert i god detalj. Blant annet ideer
 for klient-side konflikthåndtering, distribuering av data
@@ -198,7 +196,7 @@ tolkninger, så må man være påpasselig når man diskuterer egenskapene til et
 distribuert system ved hjelp av CAP teoremet.
 
 ## Konsensus
-Konsensus har vært et løst problem innefor distribuerte systemer ganske lenge. Enkelt sett
+Konsensus har vært et løst problem innenfor distribuerte systemer ganske lenge. Enkelt sett
 er konsensus i distribuerte systemer en algoritme for få flere noder i et kluster
 til å bli enig om noe. Med noe kan være å bli enig om hvilken node som er master ved
 hvilke data som er korrekte. Konsensus er sterkt
@@ -320,14 +318,14 @@ og rammeverk.
 
 
 ## Anbefalt lesing
-### Time, Clocks, and the Ordering of Events in a Distributed System
+### [1] Time, Clocks, and the Ordering of Events in a Distributed System
 Lamport gir en god forklaring på hvorfor man ikke kan bruke timestamps til
 å kunne bestemme den globale rekkefølgen på eventer i et distribuert system.
 
 [PDF](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
 
 
-### Dynamo: Amazon's Highly Available Key-value Store
+### [4] Dynamo: Amazon's Highly Available Key-value Store
 Amazon har gjort en fantastisk jobb med å forklare hvordan man kan lage
 skalerbare databasetjenester. Paperet gir en veldig god forklaring av de
 teorien og de underliggende mekanismene implementert i Dynamo. Dette paperet
@@ -335,7 +333,7 @@ vil jeg anbefale alle som er interessert i databaser eller distribuerte systemer
 
 [PDF](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 
-### Paxos made Simple
+### [2] Paxos made Simple
 Lamport prøver å forklare Paxos på en enklere måte enn det han gjorde i sitt
 første paper om algoritmen. Paxos er kjent for å være veldig kompleks og vanskelig
 å forstå. Derfor er dette paperet er for de mest interesserte og tålmodige.
@@ -358,3 +356,4 @@ være interessant å sette seg inn i hvordan Raft løser konsensusproblemet.
 ### Andre
 * [Byzantine General Problem av Lamport](http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf)
 * [Spinnaker](http://www.vldb.org/pvldb/vol4/p243-rao.pdf)
+* [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
