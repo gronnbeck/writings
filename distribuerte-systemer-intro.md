@@ -10,7 +10,8 @@ nok til å løse akkurat dine problemer.
 > the number of transistors in a dense integrated circuit doubles
 > approximately every two years.
 
-Tidene har endret seg. Selv om antall transistorer på en prosessor fortsatt dobles annenhvert år, dobler ikke hastigheten seg i samme hastighet. I dag observerer vi Moore's Lov i form av flere kjerner -
+Tidene har endret seg. Selv om antall transistorer på en prosessor fortsatt dobles annenhvert år, 
+dobler ikke hastigheten seg i samme hastighet. I dag observerer vi Moore's Lov i form av flere kjerner -
 altså i henhold til prosesseringskraft fremfor hastighet. Dette har ført til at utviklere må finne andre løsninger
 for å utnytte den nye kjernebaserte tankegangen.
 
@@ -21,8 +22,7 @@ med distribuerte systemer, men med en hel del mer kompleksitet.
 
 Selv om det fremdeles er i en tidlig fase har fagfeltet for distribuerte systemer historisk sett
 eksistert siden slutten av 1970-tallet. Man kan argumentere for at tankene og ideene bak distribuerte systemer
-startet allerede med introduksjonen av ARPANET, som vi i dag kjenner som internett,
-på 1960-tallet.
+startet allerede med introduksjonen av ARPANET, som vi i dag kjenner som internett, på 1960-tallet.
 
 ## Historie
 
@@ -36,16 +36,12 @@ Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpn
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
 på industriell skala. Det var her det veldig ofte misbrukte og misforståtte ordet "BigData" oppsto.
 
-Det startet en bølge av dataprosessering (gjerne over internett), og satte distribuerte systemer på kartet,
-men hva er egentlig MapReduce? MapReduce er et distribuert rammerverk med en veldig simpel
+Det startet bølgen for distribuert dataprosessering på kartet,
+men hva er egentlig MapReduce? MapReduce er et distribuert rammerverk med en veldig enkel
 dataprosesseringsmodell, som hadde ambisjoner om å gjøre dataprosessering enkelt, skalerbart og raskt
-på terrabytes av data. Det fantes allerede løsninger som kunne operere på datamengder av denne størrelsen, men
+på terrabytes av data for alle. Det fantes allerede løsninger som kunne operere på datamengder av denne størrelsen, men
 disse led ofte av komplekse datamodeller og måtte kjøres på dyr harware kalt "superdatamaskiner". Det som virkelig
 gjorde MapReduce unik var at den åpnet for prosessering av store mengder data på helt vanlige datamaskiner.
-
-På dette tidspunktet fantes det løsninger som raskt prosessere terrabytes med data.
-Men disse hadde ofte en komplex datamodel og var avhengig av å bli kjørt på superdatamaskin.
-Det som gjorde MapReduce unik var at det kunne prosessere store mengder data på helt vanlige maskiner!
 
 At Google kunne prosessere terrabytes av data på helt vanlige maskiner er en effekt av at Google
 introduserte et konsept om feiltoleranse. Maskiner kunne kræsje, med noen unntak,
@@ -53,9 +49,9 @@ uten at prosesseringsjobben måtte starte på nytt. Feiltoleranse er et begrep
 som blir mye brukt om distribuerte systemer i dag. Og spiller en sentral rolle
 i CAP teoremet. Kort fortalt forklarer CAP teoremet at et distribuert system må
 velge ikke kan oppfylle alle følgende egenskaper, konsistens (Consistency),
-tilgjengelighet (Availability) og partisjons tolerance (Parition tolerance).
+tilgjengelighet (Availability) og partisjonstoleranse (Parition tolerance).
 CAP blir ofte brukt til å klassifisere hvilke krav et et distribuert systemet,
-ofte distribuerte databaser, tilfredstiller. Jeg kommer tilbake til CAP senere i denne posten.
+ofte distribuerte databaser, tilfredstiller. Jeg går dypere inn i CAP teoremet om litt.
 
 I 2007 definerte Amazon industristandarden nosql databaser skulle fungere.
 Dynamo [4] er en nosql database optimalisert for mange writes og ble designet og implementert for å løse
@@ -63,15 +59,15 @@ Amazons problem med å lagre data under perioder med mye last.
 For eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
 mengde med trafikk. For å oppnå dette måtte Amazon implementere en database
 som kunne skalere for å løse deres konkrete problem.
-I artikkelen om Dynamo blir disse ideene og teknikkene presentert i god detalj. Blant annet ideer
+I artikkelen om Dynamo blir disse ideene og teknikkene presentert i detalj. Blant annet ideer
 for klient-side konflikthåndtering, distribuering av data
 basert på consisting hashing, replikering av data og feilhåndtering.
 Ideer vi fortsatt ser i moderne databaser i dag.
 
-Siden har distribuert teori og rammeverk florert i industrien. Mer forståelige
+Siden har distribuert teori, systemer og rammeverk florert. Mer forståelige
 konsensusalgoritmer som zab og raft har blitt forsket frem og introdusert.
 Og vanvittige mange nosql databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
-og CouchDB er noen få eksempler på hva som finnes i dag. Og vi har nok bare sett
+og CouchDB er noen få eksempler på hva som finnes i dag. Og jeg tror vi kun har sett
 toppen av isfjellet for distribuerte (nosql) databaser.
 
 MapReduce-modellen var basert på det som kalles en batch-orientert dataprosessering.
@@ -88,8 +84,8 @@ er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
 mikrotjeneste arkitekturen. Men jeg tror svært få har et forhold
 til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for ytelsensskyld.
-Og da ytelse som i rå kraft.
-Hvor mye data du kan kverne per time. Men jeg mener feltet er større enn som så.
+Hvor mye data du kan kverne per time, altså rå prosesserings kraft.
+Men jeg mener feltet er større enn som så.
 Distribuerte systemer er mer enn å få en mengde med maskiner til å fullføre en
 jobb så fort som mulig. Distribuerte systemer handler i tillegg til ytelse om
 isolasjon og tilgjengelighet.
@@ -99,21 +95,19 @@ applikasjoner på samme server. Hva hvis en applikasjon med et sikkerhetshull bl
 utsatt for et angrep av en ondsinnet person kan alle andre tjenester på samme server være utsatt.
 Isolasjon koker ned til om en feil i en applikasjon skal påvirke andre applikasjoner?
 
-Tilgjengelighet går med ut på hva som skjer hvis man mister en server eller en
+Tilgjengelighet går med ut på hva som skjer hvjs man mister en server eller en
 database-server tar fyr. Skal en tjeneste slutte å svare fordi en node i et cluster
-faller ned? Eller om vi skal mista all eller deler av foretningskritiske dataene
-våre fordi en server tar fyr?
+faller ned? Eller en brann på serverrommet føre til at vi mister all foretningskritiske data?
 
 Og til slutt selvfølgelig ytelse. Som helt enkelt er spørsmålet rundt hvordan
 kan vi bruke flere resursser til å løse samme problemet raskere. Disse prinsippene
 er eksluderer ikke hverandre, men mer komprimisser der man må vrake noe for å få
 noe annet. Så du lurer sikker på hvordan. Det er her distribuert system teori
-kommer inn. Skjønnheten og den uendelige kompleksiteten bak konsensus, og
-algoritmer for tilgjengelighet og feilhåndtering, osv.
+kommer inn.
 
-Først la meg introdusere
-de største feilantagelsene programmerere med lite erfaring med distribuerte
-systemer gjør. Disse feilantagelsene er i fagliteraturen ofte kalt for
+Men før vi kaster oss ut i fagfeltet så må vi snakke om
+de mest vanlige feilantagelsene programmerere, med lite erfaring med distribuerte,
+systemer gjør. Disse feilantagelsene blir i fagfeltet kalt for
 "The Fallacies of Distribited Computing"
 
 ## The Fallacies of Distributed Computing
@@ -130,7 +124,8 @@ feilantagelsene:
 7. Transport er gratis
 8. Nettverket er homogent
 
-To eksempler på hva som kan skje ved å gå i fallgruven til en eller flere av
+To eksempler, som jeg har sakset og oversatt fra Wikipedia, 
+på hva som kan skje ved å gå i fallgruven til en eller flere av
 disse feilantagelsene er
 
 1. Legger stort press på nettverket ved å legge unødvendig mye data på nettverket.
@@ -138,16 +133,16 @@ disse feilantagelsene er
 som beskytter sine interesser og har sine regler som en sender (et system) må
 forholde seg til
 
-Og det finnes en hel del andre feil og fallgruven man kan introdusere om man
-ikke er forsiktig eller bruker kjente standarder. Hvorfor tar jeg opp dette?
-Fordi det er viktig å vite om disse antagelsene og være klar over dem når
+Og det finnes en hel del andre feil og fallgruven man kan ufrivillig snuble over om man
+ikke tar hensyn til feilantagelsene jeg presentere overfor. Det er derfor viktig å gjøre seg
+kjent med disse feilantagelsene og fagfeltet før  
 man skal bygge et eller vurdere et distribuert system.
 
 
 ## CAP Teoremet
 CAP Teormet, også kalt Brewers teorem, som jeg så vidt nevnte tidligere
-går som følgende. Et distribuert system system can ikke garantere alle følgende
-egenskapene:
+går som følgende. Et distribuert system kan ikke garantere alle følgende
+egenskapene samtidig:
 
 * Konsitens (Consitency)
 * Tilgjengelighet (Availability)
@@ -175,25 +170,19 @@ fra én node vil være den samme for alle andre nodene i et kluster. Mens den ev
 ikke kan garanterer at dataene du leser fra én node være det samme for en annen node i et kluster.
 
 Tilgjengelighet handler om å garantere at en forespørsel skal få et svar om operasjonen
-var vellykket eller har feilet. Ikke-tekniks betyr det at løsningen svarer.
+var vellykket eller har feilet. Ikke-teknisk betyr det at løsningen svarer.
 Tilgjengelighet kan måles i form av oppetid. Et system som bytter bort oppetid
-for for eksempel konsistens (CP) kan ikke garantere at man får respons før systemet kan
+for eksempel konsistens (CP) kan ikke garantere at man får respons før systemet kan
 bekrefte at alle nodene er konsistente.
 Og man risikere da at systemet ikke er tilgjengelig hvis en node i en kluster forsvinner.
 
 Partisjonstoleranse er en type feiltoleranse som
 sikter til hvor godt et distribuert system tolerer feil i deler av systemet (f.eks
-  at en node faller ned) eller vilkårelig tap av meldinger. Det er ikke ofte
-man lager systemer der man ofrer partisjonstoleranse (CA), men noen databasesystemer
-ofrer, som Spinnaker, ofrer nettop partisjonstoleranse mellom datasenter for å oppnå
+  at en node faller ned) eller vilkårelig tap av meldinger. Å byte bort partisjonstoleranse
+betyr egentlig at man bytter ut muligheten for å kjøre systemet ditt på flere maskiner. 
+Så et rent CA system finnes ikke i distribuerte systemer. Men det finnes systemer som ofrer
+noe partisjonstoleranse, men databasesystemer som Spinnaker [8] ofrer partisjonstoleranse mellom datasenter for å oppnå
 de egenskapene de ønsker innenfor et datasenter.
-
-Til slutt vil jeg ta opp at CAP teoremet har mange kritikere blant annet at
-CAP formelt sett ikke kan regnes som ett teorem, men heller en pragmatisk regel.
-Mange kritiserer at CAP for ofte blir brukt for å bytte bort konsistens når de designer
-et distirbuert system. En siste kritikk er at CAP teoremet har så mange
-tolkninger, så må man være påpasselig når man diskuterer egenskapene til et
-distribuert system ved hjelp av CAP teoremet.
 
 ## Konsensus
 Konsensus har vært et løst problem innenfor distribuerte systemer ganske lenge. Enkelt sett
@@ -213,13 +202,18 @@ Wikipedia artikkelen om Paxos før du prøver deg på Lamports paper "Paxos Made
 Og med det ønsker jeg deg lykke til!
 
 I ettertid har det dukket opp flere konsensusprotokoller. Der de mest kjente
-er Zab som brukes av Zookeeper og Raft implementert i Consul, etcd og en hel del
+er Zab [6] som brukes av Zookeeper og Raft [7] implementert i Consul, etcd og en hel del
 andre distribuerte systemer. For Zab anbefaler jeg å lese paperet om Zab og Zookeeper
 for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
 sidene om "Raft Consensus" veldig bra lesing.
 
+I kryptografi har de et ordtak "venner lar ikke venner skrive sin egen krypto". 
+Det samme bør også gjelde for konsensusalgoritmer. Da mange heller kunne dratt
+nytte av å bruke Zookeeper for å kordinere enn å rette på bugs i sin egen 
+implementasjon av Zookeeper [5]. 
+
 ### Replikering og konflikthåndtering
-Konsensus og replikering av state er, som konsistens, også sterkt knyttet.
+Konsensus og replikering av state har, som konsistens, også mye med hverandre å gjøre.
 Uten en ordentlig konsensusalgoritme kan ikke noder i et distribuert system bli enige om hvilke
 data som er korrekte.
 
@@ -233,13 +227,13 @@ bør undersøke hvordan det kan gjøres automatisk.
 
 Det er mange algoritmer for å håndtere replikering av data mellom nodene i et
 distribuert system. De mest kjente kategoriene er Gossip Protocol (AP), Paxos (CP)
-og Two-Phase Commits (CA). I Amazons DynamoDB bruker de en versjon av Gossip
-Protokollen, men her er det klientene som har ansvar for konflikthåndtering.
-Siden jeg synes det er mest interessant å se på hvordan DynamoDB gjør konflikthåndering,
+og Two-Phase Commits (CA). I Dynamo bruker de en versjon av Gossip
+protokollen, men i Dynamo er det klientene som har ansvar for konflikthåndtering.
+Siden jeg synes det er mest interessant å se på hvordan Dynamo gjør konflikthåndering,
 vil jeg ikke gå i dyben på hvordan Gossip Protokollen fungerer. Jeg anbefaler
-å lese mer om det på Wikipedia og i Amazons paper om DynamoDB.
+å lese mer om det på Wikipedia og i Amazons paper om Dynamo.
 
-Som sagt er det klientene som har ansvar for konfliktshåndtering i DynamoDB.
+Som sagt er det klientene som har ansvar for konfliktshåndtering i Dynamo.
 Helt overordnet så vil DynamoDB sende alle versjonen av et dokument
 når en klient ber om et dokument som er i konflikt. Deretter er det opp til
 klienten å velge eller flette sammen dokumentet for å håndtere konflikten.
@@ -280,7 +274,7 @@ eller at noen av nodene i systemet er ondsinnede. Er noen eksempler på hva som
 kan gå galt i et distribuert system. Feiltoleransen til et distribuert system
 defineres av hvordan systemet er designet for å kunne håndtere slike feil.
 I de neste avsnittene vil jeg beskrive problemene jeg listet opp overfor.
-Og komme med et eksempel på hvordan man kan håndtere hvert problem.
+Og komme med et eksempel på hvordan man kan håndtere hvert av problemene.
 
 At en node forsvinner kan være lett å håndtere. For AP systemer betyr det at man
 påforhånd har tatt høyde for at data skal være replikert mellom flere noder.
@@ -318,42 +312,11 @@ og rammeverk.
 
 
 ## Anbefalt lesing
-### [1] Time, Clocks, and the Ordering of Events in a Distributed System
-Lamport gir en god forklaring på hvorfor man ikke kan bruke timestamps til
-å kunne bestemme den globale rekkefølgen på eventer i et distribuert system.
-
-[PDF](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
-
-
-### [4] Dynamo: Amazon's Highly Available Key-value Store
-Amazon har gjort en fantastisk jobb med å forklare hvordan man kan lage
-skalerbare databasetjenester. Paperet gir en veldig god forklaring av de
-teorien og de underliggende mekanismene implementert i Dynamo. Dette paperet
-vil jeg anbefale alle som er interessert i databaser eller distribuerte systemer.
-
-[PDF](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
-
-### [2] Paxos made Simple
-Lamport prøver å forklare Paxos på en enklere måte enn det han gjorde i sitt
-første paper om algoritmen. Paxos er kjent for å være veldig kompleks og vanskelig
-å forstå. Derfor er dette paperet er for de mest interesserte og tålmodige.
-
-[PDF](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
-
-### Zab: High-performance broadcast for primary-backup systems
-Det er lenge siden jeg har lest dette paperet. Men gir en god beskrivelse av en
-alternativ konsensusalgortime. For de som synes Paxos paperet var interessant
-anbefaler jeg å lese dette paperet.
-
-[PDF](http://web.stanford.edu/class/cs347/reading/zab.pdf)
-
-### Raft
-Uavhengig om du var modig nok til å sette deg inn i Paxos eller ikke, kan det
-være interessant å sette seg inn i hvordan Raft løser konsensusproblemet.
-[Web](https://raftconsensus.github.io)
-[PDF](https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0CCUQFjAB&url=https%3A%2F%2Framcloud.stanford.edu%2Fraft.pdf&ei=X23DVNTADca4UeiKgJAO&usg=AFQjCNE8XQb0VEwFmg-Xo5yUdZpYq7BEOg&sig2=rGAgp402q2x3QFAVr7ogMQ)
-
-### Andre
-* [Byzantine General Problem av Lamport](http://research.microsoft.com/en-us/um/people/lamport/pubs/byz.pdf)
-* [Spinnaker](http://www.vldb.org/pvldb/vol4/p243-rao.pdf)
-* [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
+* [1] [Time, Clocks, and the Ordering of Events in a Distributed System](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
+* [2] [Paxos made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
+* [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)a
+* [4] [Dynamo: Amazon's Highly Available Key-value Store](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+* [5] Building Microsystems, Sam Newman, O'Reilly 2014
+* [6] [Zab: High-performance broadcast for primary-backup systems](http://web.stanford.edu/class/cs347/reading/zab.pdf)
+* [7] [Raft](https://raftconsensus.github.io)
+* [8] [Spinnaker](http://www.vldb.org/pvldb/vol4/p243-rao.pdf)
