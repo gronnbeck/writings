@@ -88,7 +88,7 @@ som alle har dukket opp på litt over ett år, ser det ut til å være sant [7].
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
 mikrotjeneste arkitekturen. Men jeg tror svært få har et forhold
 til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for ytelsensskyld.
-Hvor mye data du kan kverne per time, altså rå prosesserings kraft.
+Som koker ned til spørsmålet om hvor mye data du kan kverne per time.
 Men jeg mener feltet er større enn som så.
 Distribuerte systemer er mer enn å få en mengde med maskiner til å fullføre en
 jobb så fort som mulig. Distribuerte systemer handler i tillegg til ytelse om
@@ -99,13 +99,15 @@ applikasjoner på samme server. Hva hvis en applikasjon med et sikkerhetshull bl
 utsatt for et angrep av en ondsinnet person kan alle andre tjenester på samme server være utsatt.
 Isolasjon koker ned til om en feil i en applikasjon skal påvirke andre applikasjoner?
 
-Tilgjengelighet går med ut på hva som skjer hvjs man mister en server eller en
+Tilgjengelighet går ut på hva som skjer hvjs man mister en server eller om en
 database-server tar fyr. Skal en tjeneste slutte å svare fordi en node i et cluster
-faller ned? Eller en brann på serverrommet føre til at vi mister all foretningskritiske data?
+faller ned? Eller om en brann på serverrommet skal føre til at vi mister all foretningskritiske data?
 
-Og til slutt selvfølgelig ytelse. Som helt enkelt er spørsmålet rundt hvordan
-kan vi bruke flere resursser til å løse samme problemet raskere. Disse prinsippene
-er eksluderer ikke hverandre, men mer komprimisser der man må vrake noe for å få
+Og til slutt selvfølgelig ytelse. Som  er spørsmålet rundt hvordan
+kan vi bruke flere resursser til å løse samme problemet raskere. Men vi kan også tenke på ytelse
+i form av skalerbarhet. Der man ønsker å data som er for store til å kunne lagres på kun én maskin. 
+
+Disse prinsippene er eksluderer ikke hverandre, men mer komprimisser der man må vrake noe for å få
 noe annet. Så du lurer sikker på hvordan. Det er her distribuert system teori
 kommer inn.
 
@@ -144,8 +146,8 @@ man skal bygge et eller vurdere et distribuert system.
 
 
 ## CAP Teoremet
-CAP Teormet, også kalt Brewers teorem, som jeg så vidt nevnte tidligere
-går som følgende. Et distribuert system kan ikke garantere alle følgende
+CAP Teormet, også kalt Brewers teorem, som jeg nevnte tidligere
+går som følgende, et distribuert system kan ikke garantere alle følgende
 egenskapene samtidig:
 
 * Konsitens (Consitency)
@@ -153,10 +155,9 @@ egenskapene samtidig:
 * Partisjonstoleranse (Partition tolerance)
 
 Før jeg begynner vil jeg poengtere at CAP har mange forskjellige
-tolkninger, og at dette er min tolkning og forståelse av CAP teoremet.
-
-En ekstrem tolkning av dette er at man får systemer som tilfredstiller to av tre av
-disse egeneskapene. Man får systemer som f.eks. er
+tolkninger, og en ekstrem tolkning av dette er at man kun kan lage systemer som 
+tilfredstiller to av tre av egeneskapene jeg presenterte overfor. 
+Setter man sammen to av de egenskapene kan man få systemer tre typer systemer:
 
  * CP, konsistens og partisjonstoleranse,
  * AP, tilgjengelighet og partisjonstoleranse, og
@@ -166,15 +167,15 @@ men hvilke tradeoffs gjør man typisk for få de egenskapene man ønsker i et di
 Jeg kommer til å bruke denne ekstreme tolkning for å illsutrere de forskjellige
 tilpassningene man kan gjøre på konsistens, tilgjengelighet og partisjonstoleranse.
 Men vær oppmerksom på at man ikke nødvendigvis trenger å bytte ut én egenskap for
-å oppnå en annen.
+å oppnå en annen [5].
 
 La oss begynne med konsistens. Grovt sett har man to hovedkategorier av konsistens, de er "strongly consistent"
 og "eventually consistent". Den første nevnte kan garantere at dataene du leser
-fra én node vil være den samme for alle andre nodene i et kluster. Mens den eventually consistency
+fra én node vil være den samme for alle andre nodene i et kluster. Mens eventually consistency
 ikke kan garanterer at dataene du leser fra én node være det samme for en annen node i et kluster.
 
 Tilgjengelighet handler om å garantere at en forespørsel skal få et svar om operasjonen
-var vellykket eller har feilet. Ikke-teknisk betyr det at løsningen svarer.
+var vellykket eller har feilet. Ikke-teknisk betyr det at løsningen alltid kan gi deg et svar.
 Tilgjengelighet kan måles i form av oppetid. Et system som bytter bort oppetid
 for eksempel konsistens (CP) kan ikke garantere at man får respons før systemet kan
 bekrefte at alle nodene er konsistente.
@@ -190,17 +191,19 @@ de egenskapene de ønsker innenfor et datasenter.
 
 ## Konsensus
 Konsensus har vært et løst problem innenfor distribuerte systemer ganske lenge. Enkelt sett
-er konsensus i distribuerte systemer en algoritme for få flere noder i et kluster
-til å bli enig om noe. Med noe kan være å bli enig om hvilken node som er master ved
-hvilke data som er korrekte. Konsensus er sterkt
+er konsensus i distribuerte systemer oppnåd via algoritme som får flere noder i et kluster
+til å bli enig om noe. Noe kan være å bli enig om hvilken node som er sjefen i klusteret eller
+å bli enige om hvilke versjon av samme data som er den nyeste. Konsensus er sterkt
 knyttet til konseptet om konsistens som fra CAP teoremet. Og man trenger en
 konsensusalgoritme med riktige tradeoffs for å få den konsistensmekansimen man ønsker.
 
 Den mest kjente protkollen for konsensus må være Paxos. Paxos, av Leslie Lamport,
-er en konsensusprotokoll som er "strongly consistent". Kort fortalt sørger Paxos for at noder i et nettverk
-får konsensus, altså at de blir enige, i ett nettverk som kan være ustabilt og
-ha upålitelige noder. Paxos er notorisk kjent for å være umulig å forstå, så jeg
-vil ikke diskutere protokollen mer enn som så. Men er absolutt verdt å prøve å sette seg inn i.
+er en konsensusprotokoll som er "strongly consistent". 
+Kort fortalt sørger Paxos for at noder i et nettverk
+får konsensus i ett nettverk med ustabile og upålitelige noder.
+Paxos er kjent for å være notorisk vanskelig å forstå og enda vanskeligere å implementere.
+Jeg vik derfor ikke diskutere protokollen videre, 
+men er absolutt verdt å prøve å sette seg inn i.
 For den interesserte anbefaler jeg å først lese
 Wikipedia artikkelen om Paxos før du prøver deg på Lamports paper "Paxos Made Simple" fra 2001.
 Og med det ønsker jeg deg lykke til!
@@ -212,9 +215,10 @@ for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
 sidene om "Raft Consensus" veldig bra lesing.
 
 I kryptografi har de et ordtak "venner lar ikke venner skrive sin egen krypto". 
-Det samme bør også gjelde for konsensusalgoritmer. Da mange heller kunne dratt
-nytte av å bruke Zookeeper for å kordinere enn å rette på bugs i sin egen 
-implementasjon av Zookeeper [5]. 
+Det samme bør også gjelde for konsensusalgoritmer, spesielt for Paxos. 
+Da mange heller kunne dratt nytte av å bruke Zookeeper for å kordinere 
+sitt distribuerte system enn å rette på bugs i sin egen 
+implementasjon av Paxos [5]. 
 
 ### Replikering og konflikthåndtering
 Konsensus og replikering av state har, som konsistens, også mye med hverandre å gjøre.
@@ -270,12 +274,15 @@ eksempel Paxos. Trenger man ikke å håndtere regresjon av data. Men man trenger
 da strategier for å mitigere tap av tilgjengelighet.
 
 ## Feiltoleranse
-Under konsensus var vi innom et spesialtilfelle av feilhåndtering. Nemlig hvordan
-man håndterer data synkroniseringsfeil. Men i et distribuert system er dette kun
+Det er mange feil som kan oppstå i et distribuert system.
+På grunn av populæriteten til distribuerte AP databaser 
+(Dynamo eller Cassandra [9]) blir ofte feilhåndtering av
+synkroniseringsfeil diskutert. Men slike feil er kun 
 en av mange feil som kan oppstå. Feil som at noder faller ned,
-nettverket mellom noder går ned, forskjellige versjoner av systemet kjører samtidig
-eller at noen av nodene i systemet er ondsinnede. Er noen eksempler på hva som
-kan gå galt i et distribuert system. Feiltoleransen til et distribuert system
+nettverket mellom noder går ned, forskjellige versjoner 
+av systemet kjører samtidig eller at noen av nodene i systemet er ondsinnede. 
+Er noen eksempler på hva som kan gå galt i et distribuert system. 
+Feiltoleransen til et distribuert system
 defineres av hvordan systemet er designet for å kunne håndtere slike feil.
 I de neste avsnittene vil jeg beskrive problemene jeg listet opp overfor.
 Og komme med et eksempel på hvordan man kan håndtere hvert av problemene.
@@ -294,15 +301,15 @@ svært få tilfeller skille mellom dem. Det er derfor viktig å lage løsninger
 som er tolerante for begge typer feil. Det som skiller en død node fra
 dødt nettverk er at noder på hver sin side av en nettverkspartisjon kan
 fortsette å operere uavhengig av hverandre, og man kan for eksempel i et master/slave
-database-system kan man ende opp med et "split-brain" problem. Et problem som
+database-system kan man ende opp med et "split-brain" problem [10]. Et problem som
 ofte er vanskelig å løse hvis man ikke kan leve med inkorrekte data.
 
 Bysantisk feiltoleranse er en teknikk designet for å håndtere ondsinnede noder.
 Men kan også brukes til sikre et system for å tåle at en node ikke oppfører seg
-som forventet. Personlig synes jeg bysantisk feiltoleranse er interessant fordi
-problemet har mange forskjellige løsninger. En løsning basert på kryptografi er
-proof-of-work. "Proof-of-work" kjeder, som blant annet er brukt i BitCoin, kan brukes
-til å unngå Bysantiske feil.
+som forventet. Det finnes mange forskjellige fremgangsmåter for å oppnå 
+bysantisk feiltoleranse. En løsning basert på BitCoins konsept om proof-of-work 
+som du kan lese mer om [her](WikiByzantinePractice) på 
+Wikipedias side om Bysantisk feiltoleranse.
 
 ## Veien videre
 I denne bloggposten har jeg prøvd på en enkel måte å forklare hvor behovet for
@@ -311,9 +318,7 @@ distribuerte systemer. I tillegg håper jeg har belyst hvilke problemer man kan
 møte på når man lager eller tar i bruk et distribuert system.
 
 Denne bloggposten er ment som den første av en serie med bloggposter om
-distribuerte systemer. I senere poster ønsker jeg å gå dypere ned i teori, konsepter
-og rammeverk.
-
+distribuerte systemer. 
 
 ## Anbefalt lesing
 * [1] [Time, Clocks, and the Ordering of Events in a Distributed System](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
@@ -324,3 +329,8 @@ og rammeverk.
 * [6] [Zab: High-performance broadcast for primary-backup systems](http://web.stanford.edu/class/cs347/reading/zab.pdf)
 * [7] [Raft](https://raftconsensus.github.io)
 * [8] [Spinnaker](http://www.vldb.org/pvldb/vol4/p243-rao.pdf)
+* [9] [Cassandra](http://cassandra.apache.org/)
+* [10] [Split-brain problem](http://en.wikipedia.org/wiki/Split-brain_%28computing%29)
+
+
+[WikiByzantinePractice]: http://en.wikipedia.org/wiki/Byzantine_fault_tolerance#Byzantine_fault_tolerance_in_practice
