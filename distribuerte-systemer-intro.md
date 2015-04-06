@@ -10,23 +10,19 @@ nok til å løse akkurat dine problemer.
 > the number of transistors in a dense integrated circuit doubles
 > approximately every two years.
 
-Tidene har endret seg. Selv om antall transistorer på en prosessor fortsatt dobles annenhvert år, 
-dobler ikke hastigheten seg i samme hastighet. I dag observerer vi Moore's Lov i form av flere kjerner -
-altså i henhold til prosesseringskraft fremfor hastighet. Dette har ført til at utviklere må finne andre løsninger
-for å utnytte den nye kjernebaserte tankegangen.
-
-Men hva har dette med distribuerte systemer å gjøre? Når en maskin ikke er nok til å løse
-problemet, kan man ta i bruk flere maskiner. Og heldigvis viser det seg at teknikker for å
-optimalisere for hastighet ved hjelp av flerkjernede prosessorer også kan benyttes i forbindelse
-med distribuerte systemer, men med en hel del mer kompleksitet.
-
-Selv om det fremdeles er i en tidlig fase har fagfeltet for distribuerte systemer historisk sett
-eksistert siden slutten av 1970-tallet. Man kan argumentere for at tankene og ideene bak distribuerte systemer
-startet allerede med introduksjonen av ARPANET, som vi i dag kjenner som internett, på 1960-tallet.
+Tidene har endret seg. Vi kan ikke lenger vente på Moore's Lov gjør jobben sin.
+En stor del av det er fordi vi produsere mer data enn vi noen gang har gjort tidligere.
+På grunn av denne vektsten av data kan vi ikke lenger lagre all dataen på en og samme maskin.
+Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben 
+ikke skal bruke mer enn et år på å fullføre. Vi tar derfor i bruk teknikker fra fagfeltet for
+distribuerte systemer som distribuert lagring og proessering for å løse disse problemene.
+Men før vi kaster oss over de mest sentrale emnene innenfor distribuerte systemer i dag. 
+Synes jeg det er viktig at vi tar en titt på hvordan fagfeltet har utviklet seg fra starten
+av 1970-tallet til i dag.  
 
 ## Historie
 
-I starten var det mye fokus på rekkefølge av hendelser og konsensus mellom maskiner.
+I starten av 1970-tallet var det mye fokus på rekkefølge av hendelser og konsensus mellom maskiner.
 Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" [1]
 og "Paxos" av Lamport [2] understøtter denne tankegangen, og de er fortsatt er kjent den dag
 i dag. Paxos er mye i bruk i reelle systemer, på tross av at den er tilnærmelig umulig å forstå.
@@ -64,11 +60,18 @@ for klient-side konflikthåndtering, distribuering av data
 basert på consisting hashing, replikering av data og feilhåndtering.
 Ideer vi fortsatt ser i moderne databaser i dag.
 
-Siden har distribuert teori, systemer og rammeverk florert. Mer forståelige
-konsensusalgoritmer som zab og raft har blitt forsket frem og introdusert.
-Og vanvittige mange nosql databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
+I de siste årene har distribuert teori, systemer og rammeverk florert. 
+Et vanvittig antall med "nosql" databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
 og CouchDB er noen få eksempler på hva som finnes i dag. Og jeg tror vi kun har sett
 toppen av isfjellet for distribuerte (nosql) databaser.
+En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye 
+distribuerte systemer er konensusalgoritmen Raft. 
+
+For omtrent et år siden ble paperet om Raft gitt ut og kort tid etter begynte
+mange nye distribuert løsninger som Consul og etcd å ta i bruk algoritmen. 
+Raft reklamerer seg selv for å være en mer foreståelig konsensusalgoritme enn Paxos.
+Hvis vi tar i betrakning det antallet av nye implementasjoner og rammeverk som tar i bruk algoritmen
+som har dukket opp på litt over ett år ser det ut til å være sant [7]. 
 
 MapReduce-modellen var basert på det som kalles en batch-orientert dataprosessering.
 Siden MapReduce først ble introdusert har dataprosessering beveget seg vekk
@@ -77,7 +80,9 @@ Det var Nathan Marz sammen med BackType, som senere ble kjøpt opp av twitter,
 som introduserte Storm et distribuert strøm-orienterte dataprosessering rammeverk.
 Strøm-orientert data-prosessering forenklet modellen for å gjøre sanntidsberegninger på store
 mengder data. Noe som ikke er lett å få til i MapReduce sin beregningsmodell. MapReduce-modellen
-er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag.
+er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag. 
+Jeg synes fagfeltet for distribuert dataprosessering er svært interessant og kommer nok til å 
+diskutere dette mer i dybden i en senere post.
 
 
 ## Hvorfor?
