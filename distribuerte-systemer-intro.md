@@ -10,7 +10,7 @@ nok til å løse akkurat dine problemer.
 > the number of transistors in a dense integrated circuit doubles
 > approximately every two years.
 
-Tidene har endret seg. Vi kan ikke lenger vente på Moore's Lov gjør jobben sin.
+Tidene har endret seg. Vi kan ikke lenger vente på at Moore's Lov gjør jobben sin.
 En stor del av det er fordi vi produsere mer data enn vi noen gang har gjort tidligere.
 På grunn av denne vektsten av data kan vi ikke lenger lagre all dataen på en og samme maskin.
 Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben 
@@ -49,30 +49,6 @@ tilgjengelighet (Availability) og partisjonstoleranse (Parition tolerance).
 CAP blir ofte brukt til å klassifisere hvilke krav et et distribuert systemet,
 ofte distribuerte databaser, tilfredstiller. Jeg går dypere inn i CAP teoremet om litt.
 
-I 2007 definerte Amazon industristandarden nosql databaser skulle fungere.
-Dynamo [4] er en nosql database optimalisert for mange writes og ble designet og implementert for å løse
-Amazons problem med å lagre data under perioder med mye last.
-For eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
-mengde med trafikk. For å oppnå dette måtte Amazon implementere en database
-som kunne skalere for å løse deres konkrete problem.
-I artikkelen om Dynamo blir disse ideene og teknikkene presentert i detalj. Blant annet ideer
-for klient-side konflikthåndtering, distribuering av data
-basert på consisting hashing, replikering av data og feilhåndtering.
-Ideer vi fortsatt ser i moderne databaser i dag.
-
-I de siste årene har distribuert teori, systemer og rammeverk florert. 
-Et vanvittig antall med "nosql" databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
-og CouchDB er noen få eksempler på hva som finnes i dag. Og jeg tror vi kun har sett
-toppen av isfjellet for distribuerte (nosql) databaser.
-En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye 
-distribuerte systemer er konensusalgoritmen Raft. 
-
-For omtrent et år siden ble paperet om Raft gitt ut og kort tid etter begynte
-mange nye distribuert løsninger som Consul og etcd å ta i bruk algoritmen. 
-Raft reklamerer seg selv for å være en mer foreståelig konsensusalgoritme enn Paxos.
-Hvis vi tar i betrakning det antallet av nye implementasjoner og rammeverk som tar i bruk algoritmen
-som har dukket opp på litt over ett år ser det ut til å være sant [7]. 
-
 MapReduce-modellen var basert på det som kalles en batch-orientert dataprosessering.
 Siden MapReduce først ble introdusert har dataprosessering beveget seg vekk
 fra batch-orientering til strøm-orientert dataprosessering.
@@ -84,6 +60,29 @@ er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes
 Jeg synes fagfeltet for distribuert dataprosessering er svært interessant og kommer nok til å 
 diskutere dette mer i dybden i en senere post.
 
+I 2007 definerte Amazon industristandarden nosql databaser skulle fungere.
+Dynamo [4] er en nosql database optimalisert for mange writes og ble designet og implementert for å løse
+Amazons problem med å lagre data under perioder med mye last.
+For eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
+mengde med trafikk. For å oppnå dette måtte Amazon implementere en database
+som kunne skalere for å løse deres konkrete problem.
+I artikkelen om Dynamo blir disse ideene og teknikkene for å løse deres problemer presentert i detalj. 
+Blant annet ideer for klient-side konflikthåndtering, distribuering av data
+basert på consisting hashing, replikering av data og feilhåndtering.
+Ideer vi fortsatt ser i moderne databaser i dag.
+
+I de siste årene har distribuert teori, systemer og rammeverk florert. 
+Et vanvittig antall med "nosql" databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
+og CouchDB er noen få eksempler på hva som finnes i dag. Og jeg tror vi kun har sett
+toppen av isfjellet for distribuerte (nosql) databaser.
+En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye 
+distribuerte systemer er konensusalgoritmen Raft. 
+
+For omtrent et år siden ble paperet om Raft gitt ut, og kort tid etter begynte
+mange nye distribuert løsninger som Consul og etcd å ta i bruk algoritmen. 
+Raft skal være en enklere og mer foreståelig konsensusalgoritme enn Paxos.
+Hvis vi tar i betrakning det antallet av nye implementasjoner og rammeverk som tar i bruk algoritmen,
+som alle har dukket opp på litt over ett år, ser det ut til å være sant [7]. 
 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
