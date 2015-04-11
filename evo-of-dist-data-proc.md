@@ -21,13 +21,20 @@ Batch processing of data is the most basic processing technique. The model assum
 Because of MapReduce the batch processing scheme is both historically and generally used for many distributed data processing problems. Batch processing is very useful for solving problems where a complete data set is curcial or the result needs to be accurate. 
 
 ### Where did it come from? 
-Batch processing is the classic way of processing data. It comes from when data was small enough to be able to process on a single machine. Batch based distributed processing was first introduced by Google with the introduction of MapReduce [source]. 
+Batch processing is the classic way of processing data. It comes from when data was small enough to be able to process on a single machine. Batch based distributed processing was first introduced by Google with the introduction of MapReduce in 2004 [MapReduce]. Later Yahoo popularized the MapReduce model when they open-sourced Hadoop [HadoopWiki]. Hadoop is widely used and many frameworks are built for and upon Hadoop such as Apache, Apache Zookeeper, Apache Pig, and lastly Apache Spark which we will discuss later. 
 
 ### What advantages does it how?
 A great advantage with batch based processing that it is very easy to reason about. One reason is that being not having to consider incoming data is great. Another is with models/frameworks such as MapReduce the developer does not have to know about the distributed infrastructure. 
 
 ### What clear disadvantages does it have? 
 If you are dependent upon newly arrived data. Then the batch processing paradigm is clearly not the approach for you. Then a you might consider stream based or micro-batch processing instead, usually sacrificing accuracy for speed. 
+
+### MapReduce Model
+
+#### Introduction
+#### Concepts
+#### Infrastructure
+
 
 Notes: 
 * Hadoop, 
@@ -36,7 +43,21 @@ Notes:
 * Offline
 
 ## Stream based processing
-Where did needs come from? What is it used for? What was the different approaches? 
+### Where did needs come from? 
+### What is it used for? 
+### What was the different approaches?
+
+### Storm
+
+#### Introduction
+
+#### Concepts
+* Spout
+* Bolt
+* Topology
+
+### Infrastructure 
+
 
 Notes: 
 * MapReduce Streaming Scientific Community, 
@@ -46,7 +67,11 @@ Notes:
 * At-least once 
 
 ## Micro batch based processing
-Where did it come from? What does it solve that is not solved by batch or stream based processing? 
+### Where did it come from? 
+### What does it solve that is not solved by batch or stream based processing? 
+
+### Apache Storm Trident
+### Apache Spark with Microbatching
 
 Notes:
 * Spark,
