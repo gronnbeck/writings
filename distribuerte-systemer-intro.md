@@ -11,61 +11,61 @@ nok til å løse akkurat dine problemer.
 > approximately every two years.
 
 Tidene har endret seg. Vi kan ikke lenger vente på at Moore's Lov gjør jobben sin.
-En stor del av det er fordi vi produsere mer data enn vi noen gang har gjort tidligere.
+En stor del av det er fordi vi produsere mer data enn vi noen gang har gjort.
 På grunn av denne vektsten av data kan vi ikke lenger lagre all dataen på en og samme maskin.
 Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben 
 ikke skal bruke mer enn et år på å fullføre. Vi tar derfor i bruk teknikker fra fagfeltet for
-distribuerte systemer som distribuert lagring og proessering for å løse disse problemene.
-Men før vi kaster oss over de mest sentrale emnene innenfor distribuerte systemer i dag. 
-Synes jeg det er viktig at vi tar en titt på hvordan fagfeltet har utviklet seg fra starten
+distribuerte systemer som distribuert lagring og prosessering for å løse disse problemene.
+Men før vi kaster oss over de mest sentrale emnene innenfor distribuerte systemer i dag, 
+er viktig at vi tar en titt på hvordan fagfeltet har utviklet seg fra starten
 av 1970-tallet til i dag.  
 
 ## Historie
 
-I starten av 1970-tallet var det mye fokus på rekkefølge av hendelser og konsensus mellom maskiner.
+I starten av 1970-tallet var det mye fokus på å løse problemer som rekkefølge av hendelser og konsensus mellom maskiner.
 Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" [1]
-og "Paxos" av Lamport [2] understøtter denne tankegangen, og de er fortsatt er kjent den dag
-i dag. Paxos er mye i bruk i reelle systemer, på tross av at den er tilnærmelig umulig å forstå.
+og "Paxos" av Lamport [2] var sentrale, og de er fortsatt er kjent den dag i dag. 
+Paxos, en algoritme for å oppnå konsensus i ett netverk av maskiner, er mye i bruk i reelle systemer, 
+på tross av at den er tilnærmelig umulig å forstå.
 Det har siden blitt introdusert flere konsensusalgoritmer - jeg kommer tilbake til de senere.
 
 Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpne forskningsartikkel
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
-på industriell skala. Det var her det veldig ofte misbrukte og misforståtte ordet "BigData" oppsto.
+på industriell skala. Det var på det tidspunket det veldig ofte misbrukte og misforståtte ordet "Big Data" oppsto.
 
 Det startet bølgen for distribuert dataprosessering på kartet,
-men hva er egentlig MapReduce? MapReduce er et distribuert rammerverk med en veldig enkel
-dataprosesseringsmodell, som hadde ambisjoner om å gjøre dataprosessering enkelt, skalerbart og raskt
-på terrabytes av data for alle. Det fantes allerede løsninger som kunne operere på datamengder av denne størrelsen, men
-disse led ofte av komplekse datamodeller og måtte kjøres på dyr harware kalt "superdatamaskiner". Det som virkelig
-gjorde MapReduce unik var at den åpnet for prosessering av store mengder data på helt vanlige datamaskiner.
+men hva er egentlig MapReduce? MapReduce er et rammerverk for distribuert prosessering av data, med en veldig enkel
+prosesseringsmodell, som hadde som mål å gjøre dataprosessering enkelt, skalerbart og raskt
+på terrabytes av data. Det fantes allerede løsninger som kunne operere på datamengder av denne størrelsen, men
+disse led ofte av komplekse datamodeller og måtte kjøres på dyr hardware kalt "superdatamaskiner". Det som virkelig
+gjorde MapReduce unik var at den åpnet for prosessering av store mengder data på vanlige datamaskiner.
 
 At Google kunne prosessere terrabytes av data på helt vanlige maskiner er en effekt av at Google
 introduserte et konsept om feiltoleranse. Maskiner kunne kræsje, med noen unntak,
 uten at prosesseringsjobben måtte starte på nytt. Feiltoleranse er et begrep
-som blir mye brukt om distribuerte systemer i dag. Og spiller en sentral rolle
-i CAP teoremet. Kort fortalt forklarer CAP teoremet at et distribuert system må
-velge ikke kan oppfylle alle følgende egenskaper, konsistens (Consistency),
+som blir mye brukt om distribuerte systemer i dag, og spiller en sentral rolle
+i CAP teoremet. Kort fortalt forklarer CAP teoremet at et distribuert system
+ikke kan oppfylle alle følgende egenskaper: konsistens (Consistency),
 tilgjengelighet (Availability) og partisjonstoleranse (Parition tolerance).
-CAP blir ofte brukt til å klassifisere hvilke krav et et distribuert systemet,
+CAP blir ofte brukt til å klassifisere hvilke krav et et distribuert system,
 ofte distribuerte databaser, tilfredstiller. Jeg går dypere inn i CAP teoremet om litt.
 
-MapReduce-modellen var basert på det som kalles en batch-orientert dataprosessering.
+MapReduce-modellen var basert på det som kalles batch-orientert dataprosessering.
 Siden MapReduce først ble introdusert har dataprosessering beveget seg vekk
 fra batch-orientering til strøm-orientert dataprosessering.
 Det var Nathan Marz sammen med BackType, som senere ble kjøpt opp av twitter,
-som introduserte Storm et distribuert strøm-orienterte dataprosessering rammeverk.
-Strøm-orientert data-prosessering forenklet modellen for å gjøre sanntidsberegninger på store
+som introduserte Storm, et distribuert strøm-orientert dataprosesseringsrammeverk.
+Strøm-orientert dataprosessering forenklet modellen for å gjøre sanntidsberegninger på store
 mengder data. Noe som ikke er lett å få til i MapReduce sin beregningsmodell. MapReduce-modellen
 er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag. 
 Jeg synes fagfeltet for distribuert dataprosessering er svært interessant og kommer nok til å 
 diskutere dette mer i dybden i en senere post.
 
-I 2007 definerte Amazon industristandarden nosql databaser skulle fungere.
-Dynamo [4] er en nosql database optimalisert for mange writes og ble designet og implementert for å løse
-Amazons problem med å lagre data under perioder med mye last.
-For eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
-mengde med trafikk. For å oppnå dette måtte Amazon implementere en database
-som kunne skalere for å løse deres konkrete problem.
+I 2007 definerte Amazon industristandarden nosql-databaser skulle fungere.
+Dynamo [4] er en nosql-database optimalisert for ett høyt antall writes og ble designet for å løse
+Amazons problem med å lagre data under perioder med mye last;
+for eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
+mengde med trafikk. For å oppnå dette trengte Amazon en database som kunne skalere.
 I artikkelen om Dynamo blir disse ideene og teknikkene for å løse deres problemer presentert i detalj. 
 Blant annet ideer for klient-side konflikthåndtering, distribuering av data
 basert på consisting hashing, replikering av data og feilhåndtering.
@@ -238,11 +238,11 @@ distribuert system. De mest kjente kategoriene er Gossip Protocol (AP), Paxos (C
 og Two-Phase Commits (CA). I Dynamo bruker de en versjon av Gossip
 protokollen, men i Dynamo er det klientene som har ansvar for konflikthåndtering.
 Siden jeg synes det er mest interessant å se på hvordan Dynamo gjør konflikthåndering,
-vil jeg ikke gå i dyben på hvordan Gossip Protokollen fungerer. Jeg anbefaler
+vil jeg ikke gå i dybden på hvordan Gossip Protokollen fungerer. Jeg anbefaler
 å lese mer om det på Wikipedia og i Amazons paper om Dynamo.
 
 Som sagt er det klientene som har ansvar for konfliktshåndtering i Dynamo.
-Helt overordnet så vil DynamoDB sende alle versjonen av et dokument
+Helt overordnet så vil DynamoDB sende alle versjoner av et dokument
 når en klient ber om et dokument som er i konflikt. Deretter er det opp til
 klienten å velge eller flette sammen dokumentet for å håndtere konflikten.
 
@@ -280,18 +280,18 @@ På grunn av populæriteten til distribuerte AP databaser
 synkroniseringsfeil diskutert. Men slike feil er kun 
 en av mange feil som kan oppstå. Feil som at noder faller ned,
 nettverket mellom noder går ned, forskjellige versjoner 
-av systemet kjører samtidig eller at noen av nodene i systemet er ondsinnede. 
-Er noen eksempler på hva som kan gå galt i et distribuert system. 
+av systemet kjører samtidig eller at noen av nodene i systemet er ondsinnede,
+er eksempler på hva som kan gå galt i et distribuert system. 
 Feiltoleransen til et distribuert system
 defineres av hvordan systemet er designet for å kunne håndtere slike feil.
 I de neste avsnittene vil jeg beskrive problemene jeg listet opp overfor.
 Og komme med et eksempel på hvordan man kan håndtere hvert av problemene.
 
 At en node forsvinner kan være lett å håndtere. For AP systemer betyr det at man
-påforhånd har tatt høyde for at data skal være replikert mellom flere noder.
+på forhånd har tatt høyde for at data skal være replikert mellom flere noder.
 Det finnes flere teknikker for å garantere at datene er tilgjengelige. Helt
 overordnet betyr det at all data som var lagret på den noden som kræsjet må
-finnes en eksakt kopi av dataen hos én eller flere andre noder. Det finnes flere teknikker
+finnes hos én eller flere andre noder. Det finnes flere teknikker
 for å gjøre dette og et eksempel på hvordan det kan gjøres er godt beskrevet
 i artikkelen om Dynamo.
 
@@ -308,8 +308,8 @@ Bysantisk feiltoleranse er en teknikk designet for å håndtere ondsinnede noder
 Men kan også brukes til sikre et system for å tåle at en node ikke oppfører seg
 som forventet. Det finnes mange forskjellige fremgangsmåter for å oppnå 
 bysantisk feiltoleranse. En løsning basert på BitCoins konsept om proof-of-work 
-som du kan lese mer om [her](WikiByzantinePractice) på 
-Wikipedias side om Bysantisk feiltoleranse.
+som du kan lese mer om på 
+[Wikipedias](WikiByzantinePractice) side om Bysantisk feiltoleranse.
 
 ## Veien videre
 I denne bloggposten har jeg prøvd på en enkel måte å forklare hvor behovet for
