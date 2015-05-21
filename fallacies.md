@@ -12,7 +12,7 @@ feilantagelsene:
 7. Transport er gratis
 8. Nettverket er homogent
 
-To eksempler, som jeg har sakset og oversatt fra Wikipedia, 
+To eksempler, som jeg har sakset og oversatt fra Wikipedia,
 på hva som kan skje ved å gå i fallgruven til en eller flere av
 disse feilantagelsene er
 
@@ -37,8 +37,8 @@ egenskapene samtidig:
 * Partisjonstoleranse (Partition tolerance)
 
 Før jeg begynner vil jeg poengtere at CAP har mange forskjellige
-tolkninger, og en ekstrem tolkning av dette er at man kun kan lage systemer som 
-tilfredstiller to av tre av egeneskapene jeg presenterte overfor. 
+tolkninger, og en ekstrem tolkning av dette er at man kun kan lage systemer som
+tilfredstiller to av tre av egeneskapene jeg presenterte overfor.
 Setter man sammen to av de egenskapene kan man få systemer tre typer systemer:
 
  * CP, konsistens og partisjonstoleranse,
@@ -66,7 +66,7 @@ Og man risikere da at systemet ikke er tilgjengelig hvis en node i en kluster fo
 Partisjonstoleranse er en type feiltoleranse som
 sikter til hvor godt et distribuert system tolerer feil i deler av systemet (f.eks
   at en node faller ned) eller vilkårelig tap av meldinger. Å byte bort partisjonstoleranse
-betyr egentlig at man bytter ut muligheten for å kjøre systemet ditt på flere maskiner. 
+betyr egentlig at man bytter ut muligheten for å kjøre systemet ditt på flere maskiner.
 Så et rent CA system finnes ikke i distribuerte systemer. Men det finnes systemer som ofrer
 noe partisjonstoleranse, men databasesystemer som Spinnaker [8] ofrer partisjonstoleranse mellom datasenter for å oppnå
 de egenskapene de ønsker innenfor et datasenter.
@@ -80,11 +80,11 @@ knyttet til konseptet om konsistens som fra CAP teoremet. Og man trenger en
 konsensusalgoritme med riktige tradeoffs for å få den konsistensmekansimen man ønsker.
 
 Den mest kjente protkollen for konsensus må være Paxos. Paxos, av Leslie Lamport,
-er en konsensusprotokoll som er "strongly consistent". 
+er en konsensusprotokoll som er "strongly consistent".
 Kort fortalt sørger Paxos for at noder i et nettverk
 får konsensus i ett nettverk med ustabile og upålitelige noder.
 Paxos er kjent for å være notorisk vanskelig å forstå og enda vanskeligere å implementere.
-Jeg vik derfor ikke diskutere protokollen videre, 
+Jeg vik derfor ikke diskutere protokollen videre,
 men er absolutt verdt å prøve å sette seg inn i.
 For den interesserte anbefaler jeg å først lese
 Wikipedia artikkelen om Paxos før du prøver deg på Lamports paper "Paxos Made Simple" fra 2001.
@@ -96,11 +96,11 @@ andre distribuerte systemer. For Zab anbefaler jeg å lese paperet om Zab og Zoo
 for å få en forståelse av hva og hvorfor. Når det gjelder Raft er github
 sidene om "Raft Consensus" veldig bra lesing.
 
-I kryptografi har de et ordtak "venner lar ikke venner skrive sin egen krypto". 
-Det samme bør også gjelde for konsensusalgoritmer, spesielt for Paxos. 
-Da mange heller kunne dratt nytte av å bruke Zookeeper for å kordinere 
-sitt distribuerte system enn å rette på bugs i sin egen 
-implementasjon av Paxos [5]. 
+I kryptografi har de et ordtak "venner lar ikke venner skrive sin egen krypto".
+Det samme bør også gjelde for konsensusalgoritmer, spesielt for Paxos.
+Da mange heller kunne dratt nytte av å bruke Zookeeper for å kordinere
+sitt distribuerte system enn å rette på bugs i sin egen
+implementasjon av Paxos [5].
 
 ### Replikering og konflikthåndtering
 Konsensus og replikering av state har, som konsistens, også mye med hverandre å gjøre.
@@ -157,13 +157,13 @@ da strategier for å mitigere tap av tilgjengelighet.
 
 ## Feiltoleranse
 Det er mange feil som kan oppstå i et distribuert system.
-På grunn av populæriteten til distribuerte AP databaser 
+På grunn av populæriteten til distribuerte AP databaser
 (Dynamo eller Cassandra [9]) blir ofte feilhåndtering av
-synkroniseringsfeil diskutert. Men slike feil er kun 
+synkroniseringsfeil diskutert. Men slike feil er kun
 en av mange feil som kan oppstå. Feil som at noder faller ned,
-nettverket mellom noder går ned, forskjellige versjoner 
+nettverket mellom noder går ned, forskjellige versjoner
 av systemet kjører samtidig eller at noen av nodene i systemet er ondsinnede,
-er eksempler på hva som kan gå galt i et distribuert system. 
+er eksempler på hva som kan gå galt i et distribuert system.
 Feiltoleransen til et distribuert system
 defineres av hvordan systemet er designet for å kunne håndtere slike feil.
 I de neste avsnittene vil jeg beskrive problemene jeg listet opp overfor.
@@ -188,19 +188,12 @@ ofte er vanskelig å løse hvis man ikke kan leve med inkorrekte data.
 
 Bysantisk feiltoleranse er en teknikk designet for å håndtere ondsinnede noder.
 Men kan også brukes til sikre et system for å tåle at en node ikke oppfører seg
-som forventet. Det finnes mange forskjellige fremgangsmåter for å oppnå 
-bysantisk feiltoleranse. En løsning basert på BitCoins konsept om proof-of-work 
-som du kan lese mer om på 
+som forventet. Det finnes mange forskjellige fremgangsmåter for å oppnå
+bysantisk feiltoleranse. En løsning basert på BitCoins konsept om proof-of-work
+som du kan lese mer om på
 [Wikipedias](WikiByzantinePractice) side om Bysantisk feiltoleranse.
 
-## Veien videre
-I denne bloggposten har jeg prøvd på en enkel måte å forklare hvor behovet for
-distribuerte systemer kommer fra. Og jeg har introdusert noe grunnteori for
-distribuerte systemer. I tillegg håper jeg har belyst hvilke problemer man kan
-møte på når man lager eller tar i bruk et distribuert system.
 
-Denne bloggposten er ment som den første av en serie med bloggposter om
-distribuerte systemer. 
 
 ## Anbefalt lesing
 * [1] [Time, Clocks, and the Ordering of Events in a Distributed System](http://web.stanford.edu/class/cs240/readings/lamport.pdf)

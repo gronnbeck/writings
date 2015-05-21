@@ -13,10 +13,10 @@ nok til å løse akkurat dine problemer.
 Tidene har endret seg. Vi kan ikke lenger vente på at Moore's Lov gjør jobben sin.
 En stor del av det er fordi vi produsere mer data enn vi noen gang har gjort.
 På grunn av denne vektsten av data kan vi ikke lenger lagre all dataen på en og samme maskin.
-Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben 
+Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben
 ikke skal bruke mer enn et år på å fullføre. Vi tar derfor i bruk teknikker fra fagfeltet for
 distribuerte systemer som distribuert lagring og prosessering for å løse disse problemene.
-Men før vi kaster oss over de mest sentrale emnene innenfor distribuerte systemer i dag, 
+Men før vi kaster oss over de mest sentrale emnene innenfor distribuerte systemer i dag,
 er viktig at vi tar en titt på hvordan fagfeltet har utviklet seg fra starten
 av 1970-tallet til i dag.  
 
@@ -24,8 +24,8 @@ av 1970-tallet til i dag.
 
 I starten av 1970-tallet var det mye fokus på å løse problemer som rekkefølge av hendelser og konsensus mellom maskiner.
 Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" [1]
-og "Paxos" av Lamport [2] var sentrale, og de er fortsatt er kjent den dag i dag. 
-Paxos, en algoritme for å oppnå konsensus i ett netverk av maskiner, er mye i bruk i reelle systemer, 
+og "Paxos" av Lamport [2] var sentrale, og de er fortsatt er kjent den dag i dag.
+Paxos, en algoritme for å oppnå konsensus i ett netverk av maskiner, er mye i bruk i reelle systemer,
 på tross av at den er tilnærmelig umulig å forstå.
 Det har siden blitt introdusert flere konsensusalgoritmer - jeg kommer tilbake til de senere.
 
@@ -33,6 +33,7 @@ Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpn
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
 på industriell skala. Det var på det tidspunket det veldig ofte misbrukte og misforståtte ordet "Big Data" oppsto.
 
+### Distribuert prosessering
 Det startet bølgen for distribuert dataprosessering på kartet,
 men hva er egentlig MapReduce? MapReduce er et rammerverk for distribuert prosessering av data, med en veldig enkel
 prosesseringsmodell, som hadde som mål å gjøre dataprosessering enkelt, skalerbart og raskt
@@ -57,32 +58,34 @@ Det var Nathan Marz sammen med BackType, som senere ble kjøpt opp av twitter,
 som introduserte Storm, et distribuert strøm-orientert dataprosesseringsrammeverk.
 Strøm-orientert dataprosessering forenklet modellen for å gjøre sanntidsberegninger på store
 mengder data. Noe som ikke er lett å få til i MapReduce sin beregningsmodell. MapReduce-modellen
-er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag. 
-Jeg synes fagfeltet for distribuert dataprosessering er svært interessant og kommer nok til å 
+er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag.
+Jeg synes fagfeltet for distribuert dataprosessering er svært interessant og kommer nok til å
 diskutere dette mer i dybden i en senere post.
 
+### Dynamo og moderne distribuerte databaser
 I 2007 definerte Amazon industristandarden nosql-databaser skulle fungere.
 Dynamo [4] er en nosql-database optimalisert for ett høyt antall writes og ble designet for å løse
 Amazons problem med å lagre data under perioder med mye last;
 for eksempel Black Friday, juletider og andre perioder der Amazon opplevde unormal
 mengde med trafikk. For å oppnå dette trengte Amazon en database som kunne skalere.
-I artikkelen om Dynamo blir disse ideene og teknikkene for å løse deres problemer presentert i detalj. 
+I artikkelen om Dynamo blir disse ideene og teknikkene for å løse deres problemer presentert i detalj.
 Blant annet ideer for klient-side konflikthåndtering, distribuering av data
 basert på consisting hashing, replikering av data og feilhåndtering.
 Ideer vi fortsatt ser i moderne databaser i dag.
 
-I de siste årene har distribuert teori, systemer og rammeverk florert. 
+I de siste årene har distribuert teori, systemer og rammeverk florert.
 Et vanvittig antall med "nosql" databaser har blitt introdusert. Cassandra, MongoDB, Voldemort
 og CouchDB er noen få eksempler på hva som finnes i dag. Og jeg tror vi kun har sett
 toppen av isfjellet for distribuerte (nosql) databaser.
-En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye 
-distribuerte systemer er konensusalgoritmen Raft. 
+En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye
+distribuerte systemer er konensusalgoritmen Raft.
 
+### Paxos og konsensus
 For omtrent et år siden ble paperet om Raft gitt ut, og kort tid etter begynte
-mange nye distribuert løsninger som Consul og etcd å ta i bruk algoritmen. 
+mange nye distribuert løsninger som Consul og etcd å ta i bruk algoritmen.
 Raft skal være en enklere og mer foreståelig konsensusalgoritme enn Paxos.
 Hvis vi tar i betrakning det antallet av nye implementasjoner og rammeverk som tar i bruk algoritmen,
-som alle har dukket opp på litt over ett år, ser det ut til å være sant [7]. 
+som alle har dukket opp på litt over ett år, ser det ut til å være sant [7].
 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
@@ -105,7 +108,7 @@ faller ned? Eller om en brann på serverrommet skal føre til at vi mister all f
 
 Og til slutt selvfølgelig ytelse. Som  er spørsmålet rundt hvordan
 kan vi bruke flere resursser til å løse samme problemet raskere. Men vi kan også tenke på ytelse
-i form av skalerbarhet. Der man ønsker å data som er for store til å kunne lagres på kun én maskin. 
+i form av skalerbarhet. Der man ønsker å data som er for store til å kunne lagres på kun én maskin.
 
 Disse prinsippene er eksluderer ikke hverandre, men mer komprimisser der man må vrake noe for å få
 noe annet. Så du lurer sikker på hvordan. Det er her distribuert system teori
@@ -116,4 +119,10 @@ de mest vanlige feilantagelsene programmerere, med lite erfaring med distribuert
 systemer gjør. Disse feilantagelsene blir i fagfeltet kalt for
 "The Fallacies of Distribited Computing"
 
+## Veien videre
+Denne bloggposten er ment som den første av en serie med bloggposter om
+distribuerte systemer. Og i denne bloggposten har jeg prøvde
+å forklare hvor behovet for distribuerte systemer kommer fra.
 
+I den neste posten av denne bloggserien kommer vi til å dykke dypere i
+kjente problemstilliner man møter på når man skal lage et distribuert system.
