@@ -2,15 +2,15 @@
 
 Det er ikke lenge siden det holdt med én maskin for å kjøre all slags software:
 de fleste problemer kunne løses ved å kaste raskere maskinvare på maskinen du brukte.
-Hvis rask nok maskinvare ikke var tilgjengelig, eller du ikke hadde råd,
-kunne du la Moore's Lov gjøre jobben sin og vente på at maskinvaren enten ble rask eller billig
+Hvis rask nok maskinvare ikke var tilgjengelig, eller du ikke hadde råd til nytt ustyr,
+kunne du la Moore's Lov gjøre jobben sin og vente på at maskinvaren enten ble rask nok eller billig
 nok til å løse akkurat dine problemer.
 
 > "Moore's law" is the observation that, over the history of computing hardware,
 > the number of transistors in a dense integrated circuit doubles
 > approximately every two years.
 
-Tidene har endret seg. Vi kan ikke lenger vente på at Moore's Lov gjør jobben sin.
+Tiden har endret seg. Vi kan ikke lenger vente på at Moore's Lov gjør jobben sin.
 En stor del av det er fordi vi produsere mer data enn vi noen gang har gjort.
 På grunn av denne vektsten av data kan vi ikke lenger lagre all dataen på en og samme maskin.
 Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben
@@ -22,30 +22,36 @@ av 1970-tallet til i dag.
 
 ## Historie
 
-I starten av 1970-tallet var det mye fokus på å løse problemer som rekkefølge av hendelser og konsensus mellom maskiner.
+Distribuerte systemer er ikke noe nytt. Allerede på 1970-tallet var det stor aktivitet i feltet.
+Det som stod på agendaen den gangen var å løse problemer som rekkefølge av hendelser som oppstår
+mellom flere maskiner og hvordan oppnå konsensus mellom maskiner.
 Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" [1]
-og "Paxos" av Lamport [2] var sentrale, og de er fortsatt er kjent den dag i dag.
-Paxos, en algoritme for å oppnå konsensus i ett netverk av maskiner, er mye i bruk i reelle systemer,
-på tross av at den er tilnærmelig umulig å forstå.
-Det har siden blitt introdusert flere konsensusalgoritmer - jeg kommer tilbake til de senere.
+ser på hvordan man kan løse problemer at klokker ikke er synkroniserte på tvers av maskiner og
+hvordan avgjøre hvilken rekkefølger hendelser har skjedd på i distribuerte systemer,
+en annen viktig artikkel er "Paxos" av Lamport [2]. Paxos er en algoritme for å oppnå konsensus i 
+ett netverk av maskiner, er mye i bruk i reelle systemer, på tross av at den er tilnærmelig 
+umulig å forstå. Det har siden blitt introdusert flere konsensusalgoritmer - 
+vi kommer tilbake til de senere.
 
 Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpne forskningsartikkel
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
-på industriell skala. Det var på det tidspunket det veldig ofte misbrukte og misforståtte ordet "Big Data" oppsto.
+på industriell skala. Det var på det tidspunket det veldig ofte misbrukte 
+og misforståtte ordet "Big Data" oppsto.
 
 ### Distribuert prosessering
-Det startet bølgen for distribuert dataprosessering på kartet,
-men hva er egentlig MapReduce? MapReduce er et rammerverk for distribuert prosessering av data, med en veldig enkel
+MapReduce startet bølgen for å sette distribuert dataprosessering på kartet.
+Men hva er egentlig MapReduce? MapReduce er et rammerverk for distribuert prosessering av data, med en veldig enkel
 prosesseringsmodell, som hadde som mål å gjøre dataprosessering enkelt, skalerbart og raskt
-på terrabytes av data. Det fantes allerede løsninger som kunne operere på datamengder av denne størrelsen, men
+over terrabytes av data. Det fantes allerede løsninger som kunne operere på datamengder av slike størrelser, men
 disse led ofte av komplekse datamodeller og måtte kjøres på dyr hardware kalt "superdatamaskiner". Det som virkelig
 gjorde MapReduce unik var at den åpnet for prosessering av store mengder data på vanlige datamaskiner.
 
 At Google kunne prosessere terrabytes av data på helt vanlige maskiner er en effekt av at Google
-introduserte et konsept om feiltoleranse. Maskiner kunne kræsje, med noen unntak,
-uten at prosesseringsjobben måtte starte på nytt. Feiltoleranse er et begrep
-som blir mye brukt om distribuerte systemer i dag, og spiller en sentral rolle
-i CAP teoremet. Kort fortalt forklarer CAP teoremet at et distribuert system
+bygde MapReduce rundt faktumet at feil vil oppstå. Maskiner kunne kræsje, med noen unntak,
+uten at prosesseringsjobben måtte starte på nytt. Dette gjorde at utviklerne som bruker
+MapReduce kunne fokusere på funksjonalitet - uten å bekymre seg om feilhåndtering.
+Feiltoleranse er et begrep som blir mye brukt om distribuerte systemer i dag, og spiller en 
+sentral rolle i CAP teoremet. Kort fortalt forklarer CAP teoremet at et distribuert system
 ikke kan oppfylle alle følgende egenskaper: konsistens (Consistency),
 tilgjengelighet (Availability) og partisjonstoleranse (Parition tolerance).
 CAP blir ofte brukt til å klassifisere hvilke krav et et distribuert system,
@@ -59,8 +65,6 @@ som introduserte Storm, et distribuert strøm-orientert dataprosesseringsrammeve
 Strøm-orientert dataprosessering forenklet modellen for å gjøre sanntidsberegninger på store
 mengder data. Noe som ikke er lett å få til i MapReduce sin beregningsmodell. MapReduce-modellen
 er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag.
-Jeg synes fagfeltet for distribuert dataprosessering er svært interessant og kommer nok til å
-diskutere dette mer i dybden i en senere post.
 
 ### Dynamo og moderne distribuerte databaser
 I 2007 definerte Amazon industristandarden nosql-databaser skulle fungere.
