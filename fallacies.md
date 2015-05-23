@@ -196,10 +196,6 @@ som du kan lese mer om på
 
 
 ## Anbefalt lesing
-* [1] [Time, Clocks, and the Ordering of Events in a Distributed System](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
-* [2] [Paxos made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
-* [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)a
-* [4] [Dynamo: Amazon's Highly Available Key-value Store](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 * [5] Building Microsystems, Sam Newman, O'Reilly 2014
 * [6] [Zab: High-performance broadcast for primary-backup systems](http://web.stanford.edu/class/cs347/reading/zab.pdf)
 * [7] [Raft](https://raftconsensus.github.io)

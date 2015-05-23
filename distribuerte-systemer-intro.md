@@ -16,6 +16,14 @@ På grunn av denne vektsten av data kan vi ikke lenger lagre all dataen på en o
 Og vi kan heller ikke prosessere datene med én prosessor på én maskin hvis vi ønsker at jobben
 ikke skal bruke mer enn et år på å fullføre. Vi tar derfor i bruk teknikker fra fagfeltet for
 distribuerte systemer som distribuert lagring og prosessering for å løse disse problemene.
+Hva er ett distribuert system?
+
+> A distributed system is a software system in which components located on networked
+> computers communicate and coordinate their actions by passing messages. The components
+> interact with each other in order to achieve a common goal.
+
+[5]  
+
 Men før vi kaster oss over de mest sentrale emnene innenfor distribuerte systemer i dag,
 er viktig at vi tar en titt på hvordan fagfeltet har utviklet seg fra starten
 av 1970-tallet til i dag.  
@@ -110,9 +118,9 @@ Raft skal være en enklere og mer foreståelig konsensusalgoritme enn Paxos. Og 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
 mikrotjeneste arkitekturen. Men jeg tror svært få har et forhold
-til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for ytelsensskyld.
-Som koker ned til spørsmålet om hvor mye data du kan kverne per time.
-Men jeg mener feltet er større enn som så.
+til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for  å oppnå 
+bedre ytelse, som koker ned til spørsmålet om hvor mye data du kan kverne per tidsenhet.
+Men feltet er større enn som så.
 Distribuerte systemer er mer enn å få en mengde med maskiner til å fullføre en
 jobb så fort som mulig. Distribuerte systemer handler i tillegg til ytelse om
 isolasjon og tilgjengelighet.
@@ -122,11 +130,11 @@ applikasjoner på samme server. Hva hvis en applikasjon med et sikkerhetshull bl
 utsatt for et angrep av en ondsinnet person kan alle andre tjenester på samme server være utsatt.
 Isolasjon koker ned til om en feil i en applikasjon skal påvirke andre applikasjoner?
 
-Tilgjengelighet går ut på hva som skjer hvjs man mister en server eller om en
+Tilgjengelighet går ut på hva som skjer hvis man mister en server eller om en
 database-server tar fyr. Skal en tjeneste slutte å svare fordi en node i et cluster
 faller ned? Eller om en brann på serverrommet skal føre til at vi mister all foretningskritiske data?
 
-Og til slutt selvfølgelig ytelse. Som  er spørsmålet rundt hvordan
+Og til slutt selvfølgelig ytelse. Som er spørsmålet rundt hvordan
 kan vi bruke flere resursser til å løse samme problemet raskere. Men vi kan også tenke på ytelse
 i form av skalerbarhet. Der man ønsker å data som er for store til å kunne lagres på kun én maskin.
 
@@ -146,3 +154,10 @@ distribuerte systemer. Og i denne bloggposten har jeg prøvde
 
 I den neste posten av denne bloggserien kommer vi til å dykke dypere i
 kjente problemstilliner man møter på når man skal lage et distribuert system.
+
+## Sources
+* [1] [Time, Clocks, and the Ordering of Events in a Distributed System](http://web.stanford.edu/class/cs240/readings/lamport.pdf)
+* [2] [Paxos made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
+* [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)a
+* [4] [Dynamo: Amazon's Highly Available Key-value Store](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+* [5] [Wikipedia: Distributed programming](http://en.wikipedia.org/wiki/Distributed_computing)
