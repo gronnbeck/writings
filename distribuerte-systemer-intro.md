@@ -55,12 +55,15 @@ systemer gjør. Disse feilantagelsene blir i fagfeltet kalt for
 "The Fallacies of Distribited Computing"
 
 ## Veien videre
-Denne bloggposten er ment som den første av en serie med bloggposter om
-distribuerte systemer. Og i denne bloggposten har jeg prøvde
-å forklare hvor behovet for distribuerte systemer kommer fra.
+Denne bloggposten er den første av en serie med bloggposter om distribuerte systemer.
+Og i denne bloggposten har vi gitt en kort introduksjon til hva distribuerte
+systemer er, og hvorfor vi mener det er viktig å ha et forhold til det.
 
-I den neste posten av denne bloggserien kommer vi til å dykke dypere i
-kjente problemstilliner man møter på når man skal lage et distribuert system.
+I de neste bloggpostene kommer vi til å dype dykere ned i distrbuert teori og implementasjon.
+I skrivende stund har vi planer om å skrive om konsensus, prosessering og databaser med tanke på distribuert systemer.
+Hva vi faktisk ender opp med å skrive om vet vi ikke.
+Agendaen er ikke satt. Det er mye spennende å ta tak i.
+Kom gjerne med ønsker ellers skriver vi om det vi har lyst til.
 
 ## Sources
 * [1] [Wikipedia: Distributed programming](http://en.wikipedia.org/wiki/Distributed_computing)
