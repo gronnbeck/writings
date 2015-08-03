@@ -95,24 +95,26 @@ distribuerte systemer er konensusalgoritmen Raft.
 ### Konsensus, Paxos og Raft
 Tidligere i bloggposten nevnte jeg konsensusalgoritmen Paxos. Forklare hva Paxos er og hvordan den fungerer er en bloggpost i seg selv. Men som en introduksjon til distribuerte systemer er det viktig å være klar over hva konsensusalgoritmer er og hvorfor det er viktig.
 
-I et distribuert system trenger man konsensusalgoritme for helt åpenbart oppnå konsensus mellom maskiner i systemet. På grunn av distribuerte systemers natur er ikke dette rett frem. Det er mye man trenger å ta hensyn til for å lage en robust konsensusalgoritme. Blant annet feil i nettverk, maskiner og progamvare.
+I et distribuert system trenger man konsensusalgoritme for helt åpenbart oppnå konsensus mellom maskiner i systemet.
+På grunn av distribuerte systemers natur er ikke dette rett frem.
+Det er mye man trenger å ta hensyn til for å lage en robust konsensusalgoritme.
+Blant annet feil i nettverk, maskiner og progamvare.
 
 Paxos er den mest kjente konsensualgoritmen, og har fra 70-tallet og er fortsatt i dag brukt for å
-oppnå konsensus i et distribuert system. Men det
-er noen problemer med den. Det ene er at Paxos
-er vanskelig å forstå og implementere, og det andre
-er at Paxos ikke skalerer veldig bra [påstand].
-På grunn av dette introduserte
-Yahoo Zookeeper [source] i 2010. Zookeeper er et distrbuert konfigurasjonssystem som
-blant annet kan brukes til konsensus. Og er brukt
-i mange open source systemer blant annet i
-Apache Hadoop og Apache Storm. Men for omtrent et år siden dukket
+oppnå konsensus i et distribuert system. Et stort problem med Paxos er
+at algoritmen vanskelig å forstå og og enda vanskeligere å implementere,
+På grunn av dette introduserte Yahoo Zookeeper [6] i 2010.
+Zookeeper er et distrbuert konfigurasjonssystem som
+blant annet kan brukes til konsensus, locks eller sentralisert konfigurering.
+Zookeeper blir fortsatt brukt i mange open source systemer blant annet i
+Apache Kafka, Apache Hadoop og Apache Storm.
+
+Men for omtrent et år siden dukket
 Raft opp som en utfordrer til Paxos. Og på kort tid har løsningen blitt
 veldig populær og blir brukt i mange moderne distribuerte systemer blant annet
-systemer som Consul og etcd.
-
-Raft skal være en enklere og mer foreståelig konsensusalgoritme enn Paxos.
-Og hvis man tar i betraktning antall nye distribuerte systemer som tar i bruk Raft [source], må man neste tro at det er sant [7].
+systemer som Consul og etcd. Raft skal være en enklere og mer foreståelig
+konsensusalgoritme enn Paxos. Og hvis man tar i betraktning antall nye
+distribuerte systemer som tar i bruk Raft [7] ser påstanden å holde vann.
 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
@@ -160,3 +162,5 @@ kjente problemstilliner man møter på når man skal lage et distribuert system.
 * [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)a
 * [4] [Dynamo: Amazon's Highly Available Key-value Store](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 * [5] [Wikipedia: Distributed programming](http://en.wikipedia.org/wiki/Distributed_computing)
+* [6] [Zookeeper: Wait-free coordination for Internet-scale systems](http://labs.yahoo.com/publication/zookeeper-wait-free-coordination-for-internet-scale-systems/)
+* [7] [Raft Consensus Homepage](https://raftconsensus.github.io/)
