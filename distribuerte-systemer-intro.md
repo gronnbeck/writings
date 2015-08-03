@@ -29,13 +29,13 @@ mikrotjeneste arkitekturen[2]. Men ikke alle har et forhold
 til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for å oppnå
 bedre ytelse, som koker ned til spørsmålet om hvor mye data du kan kverne per tidsenhet.
 Men feltet er større enn som så.
-Distribuerte systemer handler i tillegg til ytelse om isolasjon og tilgjengelighet. 
+Distribuerte systemer handler i tillegg til ytelse om isolasjon og tilgjengelighet.
 
 Med isolasjon mener vi at vi nødvendigvis ikke har lyst til å kjøre alle
 applikasjoner på samme server. Hva hvis en applikasjon med et sikkerhetshull blir
 utsatt for et angrep av en ondsinnet person kan alle andre tjenester på samme server være utsatt.
 Isolasjon koker ned til om en feil i en applikasjon skal påvirke andre applikasjoner,
-eller andre instanser av samme applikasjon. 
+eller andre instanser av samme applikasjon.
 
 Tilgjengelighet går ut på hva som skjer hvis man mister en server eller om en
 database-server tar fyr. Skal en tjeneste slutte å svare fordi en node i et cluster
@@ -43,16 +43,11 @@ faller ned? Eller om en brann på serverrommet skal føre til at vi mister all f
 
 Og til slutt selvfølgelig ytelse. Som er spørsmålet rundt hvordan
 vi kan bruke flere resursser til å løse problemet raskere. Men vi kan også tenke på ytelse
-i form av skalerbarhet. Der man ønsker å proessesere data som er for store til å kunne 
+i form av skalerbarhet. Der man ønsker å proessesere data som er for store til å kunne
 proesseres på én maskin.
 
 Disse konseptene eksluderer ikke hverandre, men mer komprimisser der man må vrake noe for å få
 noe annet. Så du lurer sikker på hvordan. Det er her distribuert system teori kommer inn.
-
-Men før vi kaster oss ut i fagfeltet så må vi snakke om
-de mest vanlige feilantagelsene programmerere, med lite erfaring med distribuerte,
-systemer gjør. Disse feilantagelsene blir i fagfeltet kalt for
-"The Fallacies of Distribited Computing"
 
 ## Veien videre
 Denne bloggposten er den første av en serie med bloggposter om distribuerte systemer.
