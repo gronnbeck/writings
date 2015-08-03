@@ -15,3 +15,5 @@ og CouchDB er noen få eksempler på hva som finnes i dag. Og jeg tror vi kun ha
 toppen av isfjellet for distribuerte (nosql) databaser.
 En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye
 distribuerte systemer er konensusalgoritmen Raft.
+
+* [4] [Dynamo: Amazon's Highly Available Key-value Store](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)

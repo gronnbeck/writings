@@ -21,3 +21,7 @@ veldig populær og blir brukt i mange moderne distribuerte systemer blant annet
 systemer som Consul og etcd. Raft skal være en enklere og mer foreståelig
 konsensusalgoritme enn Paxos. Og hvis man tar i betraktning antall nye
 distribuerte systemer som tar i bruk Raft [7] ser påstanden å holde vann.
+
+* [2] [Paxos made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
+* [6] [Zookeeper: Wait-free coordination for Internet-scale systems](http://labs.yahoo.com/publication/zookeeper-wait-free-coordination-for-internet-scale-systems/)
+* [7] [Raft Consensus Homepage](https://raftconsensus.github.io/)

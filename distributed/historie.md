@@ -16,3 +16,5 @@ Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpn
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
 på industriell skala. Det var på det tidspunket det veldig ofte misbrukte
 og misforståtte begrepet "Big Data" ble utbredt.
+
+* [1] [Time, Clocks, and the Ordering of Events in a Distributed System](http://web.stanford.edu/class/cs240/readings/lamport.pdf)

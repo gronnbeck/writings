@@ -21,7 +21,7 @@ Hva er ett distribuert system?
 > computers communicate and coordinate their actions by passing messages. The components
 > interact with each other in order to achieve a common goal.
 
-[5]  
+[1]  
 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
@@ -63,5 +63,5 @@ I den neste posten av denne bloggserien kommer vi til å dykke dypere i
 kjente problemstilliner man møter på når man skal lage et distribuert system.
 
 ## Sources
-* [5] [Wikipedia: Distributed programming](http://en.wikipedia.org/wiki/Distributed_computing)
+* [1] [Wikipedia: Distributed programming](http://en.wikipedia.org/wiki/Distributed_computing)
 * [2] [Martin Fowler: Microservices](http://martinfowler.com/articles/microservices.html)
