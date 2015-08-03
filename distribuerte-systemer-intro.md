@@ -19,9 +19,7 @@ Hva er ett distribuert system?
 
 > A distributed system is a software system in which components located on networked
 > computers communicate and coordinate their actions by passing messages. The components
-> interact with each other in order to achieve a common goal.
-
-[1]  
+> interact with each other in order to achieve a common goal. [1] 
 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
@@ -50,14 +48,10 @@ Disse konseptene eksluderer ikke hverandre, men mer komprimisser der man må vra
 noe annet. Så du lurer sikker på hvordan. Det er her distribuert system teori kommer inn.
 
 ## Veien videre
-Denne bloggposten er den første av en serie med bloggposter om distribuerte systemer.
-Og i denne bloggposten har vi gitt en kort introduksjon til hva distribuerte
-systemer er, og hvorfor vi mener det er viktig å ha et forhold til det.
-
-I de neste bloggpostene kommer vi til å dype dykere ned i distrbuert teori og implementasjon.
-I skrivende stund har vi planer om å skrive om konsensus, prosessering og databaser med tanke på distribuert systemer.
-Hva vi faktisk ender opp med å skrive om vet vi ikke.
-Agendaen er ikke satt. Det er mye spennende å ta tak i.
+Denne bloggposten er den første i en serie om distribuerte systemer.
+I de neste bloggpostene kommer vi til å dykke dypere ned i distribuert teori og implementasjon.
+I skrivende stund har vi planer om å skrive om konsensus, prosessering og databaser i kontekst av distribuerte systemer.
+Agendaen er ikke satt. Det er mye spennende å ta tak i!
 Kom gjerne med ønsker ellers skriver vi om det vi har lyst til.
 
 ## Sources
