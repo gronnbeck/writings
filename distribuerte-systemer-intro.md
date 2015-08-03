@@ -40,6 +40,7 @@ av klokker.
 En annen viktig artikkel er "Paxos" av Lamport [2]. Paxos er en algoritme for å oppnå konsensus i 
 ett netverk av maskiner, som er mye i bruk i reelle systemer, på tross av at den er tilnærmelig 
 umulig å forstå. Det har siden blitt introdusert flere konsensusalgoritmer - 
+vi kommer tilbake til de senere
 
 Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpne forskningsartikkel
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
