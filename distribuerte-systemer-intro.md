@@ -36,14 +36,14 @@ mellom flere maskiner og hvordan oppnå konsensus mellom maskiner.
 Vitenskapelige artikler som "Time, Clocks, and the Ordering of Events in a Distributed System" [1]
 ser på hvordan man kan løse problemer at klokker ikke er synkroniserte på tvers av maskiner og
 hvordan avgjøre hvilken rekkefølger hendelser har skjedd på i distribuerte systemer,
-en annen viktig artikkel er "Paxos" av Lamport [2]. Paxos er en algoritme for å oppnå konsensus i 
-ett netverk av maskiner, er mye i bruk i reelle systemer, på tross av at den er tilnærmelig 
-umulig å forstå. Det har siden blitt introdusert flere konsensusalgoritmer - 
+en annen viktig artikkel er "Paxos" av Lamport [2]. Paxos er en algoritme for å oppnå konsensus i
+ett netverk av maskiner, er mye i bruk i reelle systemer, på tross av at den er tilnærmelig
+umulig å forstå. Det har siden blitt introdusert flere konsensusalgoritmer -
 vi kommer tilbake til de senere.
 
 Fagfeltet var lenge usynlig for industrien, men da Google ga ut sin første åpne forskningsartikkel
 om MapReduce i 2004 [3] fikk man plutselig øynene opp for hva distribuerte systemer kan bidra med
-på industriell skala. Det var på det tidspunket det veldig ofte misbrukte 
+på industriell skala. Det var på det tidspunket det veldig ofte misbrukte
 og misforståtte ordet "Big Data" oppsto.
 
 ### Distribuert prosessering
@@ -58,7 +58,7 @@ At Google kunne prosessere terrabytes av data på helt vanlige maskiner er en ef
 bygde MapReduce rundt faktumet at feil vil oppstå. Maskiner kunne kræsje, med noen unntak,
 uten at prosesseringsjobben måtte starte på nytt. Dette gjorde at utviklerne som bruker
 MapReduce kunne fokusere på funksjonalitet - uten å bekymre seg om feilhåndtering.
-Feiltoleranse er et begrep som blir mye brukt om distribuerte systemer i dag, og spiller en 
+Feiltoleranse er et begrep som blir mye brukt om distribuerte systemer i dag, og spiller en
 sentral rolle i CAP teoremet. Kort fortalt forklarer CAP teoremet at et distribuert system
 ikke kan oppfylle alle følgende egenskaper: konsistens (Consistency),
 tilgjengelighet (Availability) og partisjonstoleranse (Parition tolerance).
@@ -92,7 +92,7 @@ toppen av isfjellet for distribuerte (nosql) databaser.
 En viktig milepel for distribuert teori og for fremgangen innen for utvikling av nye
 distribuerte systemer er konensusalgoritmen Raft.
 
-### Paxos og konsensus
+### Konsensus, Paxos og Raft
 Tidligere i bloggposten nevnte jeg konsensusalgoritmen Paxos. Forklare hva Paxos er og hvordan den fungerer er en bloggpost i seg selv. Men som en introduksjon til distribuerte systemer er det viktig å være klar over hva konsensusalgoritmer er og hvorfor det er viktig.
 
 I et distribuert system trenger man konsensusalgoritme for helt åpenbart oppnå konsensus mellom maskiner i systemet. På grunn av distribuerte systemers natur er ikke dette rett frem. Det er mye man trenger å ta hensyn til for å lage en robust konsensusalgoritme. Blant annet feil i nettverk, maskiner og progamvare.
@@ -106,19 +106,18 @@ På grunn av dette introduserte
 Yahoo Zookeeper [source] i 2010. Zookeeper er et distrbuert konfigurasjonssystem som
 blant annet kan brukes til konsensus. Og er brukt
 i mange open source systemer blant annet i
-Apache Hadoop og Apache Storm. Men for omtrent et år siden dukket en løsning som valgte å utfordre Paxos. Da ble paperet om en ny konsensusalgoritme Raft gitt ut. Og på kort tid har den nye algoritmen blitt
-veldig populær og blir brukt i mange moderne
-distribuerte systemer blant annet databaser.
+Apache Hadoop og Apache Storm. Men for omtrent et år siden dukket
+Raft opp som en utfordrer til Paxos. Og på kort tid har løsningen blitt
+veldig populær og blir brukt i mange moderne distribuerte systemer blant annet
+systemer som Consul og etcd.
 
-#### Raft
-Da Raft ble lansert for omtrent et år siden, tok det ikke veldig lang tid før nye distribuert løsninger som Consul og etcd dukket opp som tok i bruk den nye algoritmen.
-
-Raft skal være en enklere og mer foreståelig konsensusalgoritme enn Paxos. Og hvis man tar i betraktning antall nye distribuerte systemer som tar i bruk Raft, mp man neste tro at det er sant [7].
+Raft skal være en enklere og mer foreståelig konsensusalgoritme enn Paxos.
+Og hvis man tar i betraktning antall nye distribuerte systemer som tar i bruk Raft [source], må man neste tro at det er sant [7].
 
 ## Hvorfor?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, og mer og mer på
 mikrotjeneste arkitekturen. Men jeg tror svært få har et forhold
-til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for  å oppnå 
+til hvorfor man trenger distribuerte systemer. Mange mener nok at det er for  å oppnå
 bedre ytelse, som koker ned til spørsmålet om hvor mye data du kan kverne per tidsenhet.
 Men feltet er større enn som så.
 Distribuerte systemer er mer enn å få en mengde med maskiner til å fullføre en
