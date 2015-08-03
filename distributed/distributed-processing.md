@@ -25,3 +25,5 @@ som introduserte Storm, et distribuert strøm-orientert dataprosesseringsrammeve
 Strøm-orientert dataprosessering forenklet modellen for å gjøre sanntidsberegninger på store
 mengder data. Noe som ikke er lett å få til i MapReduce sin beregningsmodell. MapReduce-modellen
 er såpass godt forstått, integrert og raskt at det fortsatt i stor grad brukes i dag.
+
+* [3] [MapReduce](http://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)a
