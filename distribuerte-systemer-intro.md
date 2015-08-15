@@ -23,33 +23,41 @@ Så, hva er ett distribuert system?
 
 ## Hvorfor distribuerte systemer?
 I dag blir distribuerte systemer hovedsaklig forbundet med nosql databaser, web-applikasjoner, 
-og mer og mer med mikrotjeneste arkitektur [2]. Men vi tror ikke alle har et forhold
+og mer og mer med mikrotjenestearkitektur [2]. Men vi tror ikke alle har et forhold
 til hvorfor man trenger distribuerte systemer. Mange mener nok at det er kun for å oppnå
 bedre ytelse, som koker ned til spørsmålet om hvor mye data du kan kverne per tidsenhet.
 Men feltet er større enn som så.
 Distribuerte systemer handler i tillegg til ytelse om isolasjon og tilgjengelighet.
 
 Med isolasjon mener vi at vi nødvendigvis ikke har lyst til å kjøre alle
-applikasjoner på samme server. Hva hvis en applikasjon med et sikkerhetshull blir
+applikasjoner på samme server. Hvis en applikasjon med et sikkerhetshull blir
 utsatt for et angrep av en ondsinnet person kan alle andre tjenester på samme server være utsatt.
-#todo skriv om uavhengige deploys.
-Isolasjon koker ned til om en feil i en applikasjon skal påvirke andre applikasjoner,
-eller andre instanser av samme applikasjon.
+Skal feil i en applikasjon påvirke andre applikasjoner, eller andre instanser av samme applikasjon?
 
-Tilgjengelighet går ut på hva som skjer hvis man mister en server eller om en
-database-server tar fyr. Skal en tjeneste slutte å svare fordi en node i et cluster
+Isolasjon sier også noe om hvor lett det er å gjøre endringer i ett system, og få endringene
+produksjonsatt. Essensen til mikrotjenestearkitektur er å separere oppgaver/komponenter i ett system 
+i mindre tjenester, som kan endres og deployes uavhengige av hverandre.   
+
+Tilgjengelighet går ut på hva som skjer hvis man mister en server eller om en database-server tar fyr, 
+eller en prosess rett og slett kræsjer. Skal en tjeneste slutte å svare fordi en node i et cluster
 faller ned? Eller om en brann på serverrommet skal føre til at vi mister all foretningskritiske data?
 
 Og til slutt selvfølgelig ytelse. Som er spørsmålet rundt hvordan
 vi kan bruke flere resursser til å løse problemet raskere. Men vi kan også tenke på ytelse
-i form av skalerbarhet. Der man ønsker å proessesere data som er for store til å kunne
-proesseres på én maskin.
+i form av skalerbarhet. Der man ønsker å prossesere data som er for store til å kunne
+prosseres på én maskin, eller håndtere flere samtidige sesjoner på en nettside.
 
-#todo skriv om negative sider med distribuerte applikasjoner. Økt kompleksitet, kostnad.
+Det er jo selvfølgelig ikke bare positive sider med distribuerte systemer. Noe av baksiden av 
+medaljen er økt kompleksitet og kostnad. 
 
-#todo skriv om dette avsnittet.
-Disse konseptene eksluderer ikke hverandre, men mer komprimisser der man må vrake noe for å få
-noe annet. Så du lurer sikker på hvordan. Det er her distribuert system teori kommer inn.
+Nye typer feil kan oppstå som pakketap på nettverket, dannelse av kø(congestion) og 
+nettverkspartisjoner(split-brain).
+Hvor skal feilhåndteringen av nevnte feil ligge? Vil koden din vite at den er del av ett 
+distribuert system, eller klarer man abstrahere vekk kompleksiteten? 
+
+De nevnte konseptene er egenskaper til et distribuert system. Ulike systemer vil ha forskjellige
+behov. Hvis man ønsker tilgjengelighet kan det gå på bekostning av ytelse, eller
+økt kompleksistet. Lurer du på hvordan dette henger sammen? Det er her distribuert system teori kommer inn.
 
 ## Veien videre
 Denne bloggposten er den første i en serie om distribuerte systemer.
